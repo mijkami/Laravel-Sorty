@@ -25,7 +25,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // définition variable $users
+        $users = User::orderBy('name', 'ASC')->get();
+        // aller à la vue 'index.blade.php' en passant la variable $users définie préalablement
+        return view('pages.userslist', compact('users'));
     }
 
     /**

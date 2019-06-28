@@ -26,7 +26,20 @@ class ParticipController extends Controller
      */
     public function index()
     {
-        //
+        //définition de variable de session
+        if (is_null(Auth::user())) { } else {
+            session(['role' => User::find(Auth::user()->id)->role]);
+            session(['firstname' => User::find(Auth::user()->id)->firstname]);
+            session(['name' => Auth::user()->name]);
+            session(['id' => Auth::user()->id]);
+        }
+        //fin de définition var session
+        //usage :
+        //session('role')
+
+        $particips = Particip::orderBy('inscription', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'ASC')->get();
+        return view('pages.planning', compact('particips', 'sors'));
     }
 
     /**
