@@ -33,7 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                             <a class="nav-link" href="http://www.parapangue.re/">Parapangue</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('particips.index') }}">{{ __('> planning') }}</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('archives.index') }}">{{ __('> archives') }}</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('editsorties.index') }}">{{ __('> edit sorties') }}</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('> liste utilis.') }}</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('editusers.index') }}">{{ __('> edit utilis.') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -41,11 +58,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Connection') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
                                 </li>
                             @endif
                         @else
@@ -73,7 +90,20 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            @include('flash-message')
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"></div>
+                            <div class="panel-body">
+                            {{-- content --}}
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
