@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.planning ');
 });
 
 Auth::routes();
@@ -20,7 +20,8 @@ Auth::routes();
 Route::resource('users', 'UserController');
 Route::get('users/{user}/destroy', 'UserController@destroyForm')->name('users.grenade');
 Route::resource('sors', 'SorController');
-Route::get('users/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenade');
+Route::get('sors/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenade');
 Route::resource('particips', 'ParticipController');
+Route::get( '/particips/create2', 'ParticipController@createAdmin')->name('particips.createAdmin');
 Route::resource('usertemps', 'UsertempController');
 
