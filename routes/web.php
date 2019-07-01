@@ -22,6 +22,6 @@ Route::get('users/{user}/destroy', 'UserController@destroyForm')->name('users.gr
 Route::resource('sors', 'SorController');
 Route::get('sors/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenade');
 Route::resource('particips', 'ParticipController');
-Route::get( '/particips/create2', 'ParticipController@createAdmin')->name('particips.createAdmin');
+Route::get('/particips/create2', 'ParticipController@create2');
 Route::resource('usertemps', 'UsertempController');
 

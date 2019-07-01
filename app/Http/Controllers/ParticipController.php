@@ -59,7 +59,7 @@ class ParticipController extends Controller
     {
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
-        return view( 'pages.planningCreate2', compact('particips', 'sors'));
+        return view('pages.planningCreate2', compact('particips', 'sors'));
 
     }
 
@@ -97,7 +97,7 @@ class ParticipController extends Controller
      */
     public function edit(Particip $particip)
     {
-        //
+        return view('pages.planningEdit', compact('particip'));
     }
 
     /**
@@ -109,7 +109,9 @@ class ParticipController extends Controller
      */
     public function update(Request $request, Particip $particip)
     {
-        //
+        $particip->update($request->all());
+        return Redirect::to('/particips')->with('success', 'La participation est modifiée');
+
     }
 
     /**

@@ -22,7 +22,11 @@ foreach ($sorFutur as $sor) {
     foreach ($participSor as $particip) {
         // ajouter IF pour afficher différemment selon admin ou autre utilisateur,
         // tester si le $particip->user_id correspond à la session de id
-        echo '<a href="/particips/'.$particip->id.'/edit">éditer</a>'.' <a href="/particips/'.$particip->id.'/destroy">détruire</a><br>';
+        if ($particip->user_id == session('id')){
+
+            echo '<a href="/particips/'.$particip->id.'/edit">éditer</a>'.' <a href="/particips/'.$particip->id.'/destroy">détruire</a><br>';
+
+        }
         echo $particip->User->name.'<br>';
         // ajouter liens de suppression et de modification;
         // echo "<a href>";
