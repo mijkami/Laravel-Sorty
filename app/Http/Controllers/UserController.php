@@ -28,7 +28,7 @@ class UserController extends Controller
         // définition variable $users
         $users = User::orderBy('name', 'ASC')->get();
         // aller à la vue 'index.blade.php' en passant la variable $users définie préalablement
-        return view('pages.userslist', compact('users'));
+        return view('pages.users', compact('users'));
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.userCreate');
     }
 
     /**
@@ -49,7 +49,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // récupère tout le formulaire, possibilité de faire un-à-un
+        // pour tous les éléments, champ par champ
+        User::create($request->all());
+        return Redirect::to('/users');
+        // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
+        return Redirect::to('/users')->with('success', "L'utilisateur est créé.");
     }
 
     /**
@@ -69,9 +74,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        //on renvoie vers la vue qui permettra d'editer l'user
+        //correspondant à id- creer une vue useredit
+        // compact user : renvoie à userEdit les données d'user ($ non nécessaire)
+
+        return view('pages.userEdit', compact('user'));
     }
 
     /**
@@ -81,9 +90,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
+        return Redirect::to('/users')->with('success', 'La  fiche de ' . $user->name . ' ' . $user->firstname . ' est modifiée');
     }
 
     /**
@@ -92,8 +104,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        // return Redirect::to('/users');
+        // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
+        return Redirect::to('/users')->with('success', 'La  fiche de ' . $user->name . ' ' . $user->firstname . ' est détruite.');
+    }
+
+    public function destroyForm(User $user)
+    {
+        return view('pages.userDelete', compact('user'));
     }
 }

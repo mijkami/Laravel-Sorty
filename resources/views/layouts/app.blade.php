@@ -37,19 +37,16 @@
                              <a class="nav-link" href="http://www.parapangue.re/">Parapangue</a>
                         </li>
                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('particips.index') }}">{{ __('> planning') }}</a>
+                             <a class="nav-link" href="{{ route('particips.index') }}">{{ __('>planning') }}</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                              <a class="nav-link" href="{{ route('archives.index') }}">{{ __('> archives') }}</a>
+                        </li> --}}
+                        <li class="nav-item">
+                             <a class="nav-link" href="/sors">{{ __('>sorties') }}</a>
                         </li>
                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('editsorties.index') }}">{{ __('> edit sorties') }}</a>
-                        </li>
-                        <li class="nav-item">
-                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('> liste utilis.') }}</a>
-                        </li>
-                        <li class="nav-item">
-                             <a class="nav-link" href="{{ route('editusers.index') }}">{{ __('> edit utilis.') }}</a>
+                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('>utilisateurs') }}</a>
                         </li>
                     </ul>
 

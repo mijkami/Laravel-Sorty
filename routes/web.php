@@ -17,13 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
+Route::get('users/{user}/destroy', 'UserController@destroyForm')->name('users.grenade');
 Route::resource('sors', 'SorController');
-
+Route::get('users/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenade');
 Route::resource('particips', 'ParticipController');
-Route::resource('archives', 'ArchiveController');
-Route::resource('editsorties', 'EditSorController');
-Route::resource('editusers', 'EditUserController');
-
 Route::resource('usertemps', 'UsertempController');
+
