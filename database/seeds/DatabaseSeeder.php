@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         DB::table('particips')->delete();
 
         // servira pour la génération de typ de sorties
-        $array = array("sortie", "montagne", "encadree", "1500", "accompagnee", "montagne", "sunset");
+        $array = array("sortie normale", "montagne", "encadrée", "1500", "accompagnée", "sunset");
         // initialisation de faker
         $faker = Faker\Factory::create('fr_FR');
 
