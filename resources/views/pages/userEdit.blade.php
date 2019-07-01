@@ -2,7 +2,7 @@
 @section('content')
 
 <h1>Modification d'utilisateur</h1><br>
-
+<a href="/users">Retour arrière</a><br>
 {{-- store => update --}}
 
 <form  method="POST" action="{{ route('users.update', $user->id) }}">

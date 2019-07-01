@@ -52,7 +52,7 @@ class UserController extends Controller
         // récupère tout le formulaire, possibilité de faire un-à-un
         // pour tous les éléments, champ par champ
         User::create($request->all());
-        return Redirect::to('/users');
+        // return Redirect::to('/users');
         // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
         return Redirect::to('/users')->with('success', "L'utilisateur est créé.");
     }

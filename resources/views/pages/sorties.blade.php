@@ -12,8 +12,8 @@ $sorFutur = $sors->Where('dat', '>=', today());
 
 foreach ($sorFutur as $sor) {
 
-    echo $sor->dat.", ".$sor->typ.' <a href="/sors/'.$sor->id.'/edit">éditer</a>'.' <a href="/sors/'.$sor->id.'/destroy">détruire</a>';
-    echo "<br>";
+    echo Date::parse($sor->dat)->format('l j F').", ".$sor->typ.' <a href="/sors/'.$sor->id.'/edit">éditer</a>'.' <a href="/sors/'.$sor->id.'/destroy">détruire</a><br>';
+    // echo '<a href="/sors/'.$sor->id.'/destroy"> suppression</a><br>';
     echo $sor->comment_sor;
 
     echo "<br>________<br><br>";

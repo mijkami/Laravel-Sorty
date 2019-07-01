@@ -61,7 +61,7 @@ class SorController extends Controller
         // récupère tout le formulaire, possibilité de faire un-à-un
         // pour tous les éléments, champ par champ
         Sor::create($request->all());
-        return Redirect::to('/sors');
+        // return Redirect::to('/sors');
         // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
         return Redirect::to('/sors')->with('success', "La sortie est créée.");
     }
