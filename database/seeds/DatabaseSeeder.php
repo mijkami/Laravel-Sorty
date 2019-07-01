@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             Sor::create([
 
                 'dat' => $date2,
-                'typ' => $array[rand(0, 6)],
+                'typ' => $array[rand(0, 5)],
                 'comment_sor' => $faker->text,
             ]);
         }
