@@ -49,7 +49,18 @@ class ParticipController extends Controller
      */
     public function create()
     {
-        //
+        $particips = Particip::orderBy('inscription', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'ASC')->get();
+        return view('pages.planningCreate', compact('particips', 'sors'));
+    }
+
+
+    public function create2()
+    {
+        $particips = Particip::orderBy('inscription', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'ASC')->get();
+        return view( 'pages.planningCreate2', compact('particips', 'sors'));
+
     }
 
     /**
@@ -60,7 +71,11 @@ class ParticipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // récupère tout le formulaire, possibilité de faire un-à-un
+        // pour tous les éléments, champ par champ
+        Particip::create($request->all());
+        // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
+        return Redirect::to('/particips')->with('success', "La participation est enregistrée.");
     }
 
     /**
