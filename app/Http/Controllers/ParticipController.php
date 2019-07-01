@@ -17,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 
+Date::setLocale('fr');
+
 class ParticipController extends Controller
 {
     /**

@@ -13,9 +13,7 @@ $sorFutur = $sors->Where('dat', '>=', today());
 
 foreach ($sorFutur as $sor) {
 
-    echo $sor->dat;
-    echo $sor->typ;
-    echo "<br>";
+    echo Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."<br>";
     echo $sor->comment_sor."<br>";
     $participSor = $particips->Where('sor_id','=', $sor->id);
 
