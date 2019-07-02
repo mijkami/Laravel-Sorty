@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ParticipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,17 +12,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.planning ');
-});
 
+Route::get('/', 'ParticipController@home');
 Auth::routes();
-
+Route::get('/particips/create2', 'ParticipController@create2');
 Route::resource('users', 'UserController');
 Route::get('users/{user}/destroy', 'UserController@destroyForm')->name('users.grenade');
 Route::resource('sors', 'SorController');
 Route::get('sors/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenade');
 Route::resource('particips', 'ParticipController');
-Route::get('/particips/create2', 'ParticipController@create2');
+
 Route::resource('usertemps', 'UsertempController');
 

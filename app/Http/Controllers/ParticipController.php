@@ -21,14 +21,8 @@ Date::setLocale('fr');
 
 class ParticipController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function home()
     {
-        //définition de variable de session
         if (is_null(Auth::user())) { } else {
             session(['role' => User::find(Auth::user()->id)->role]);
             session(['firstname' => User::find(Auth::user()->id)->firstname]);
@@ -39,6 +33,19 @@ class ParticipController extends Controller
         //usage :
         //session('role')
 
+        $particips = Particip::orderBy('inscription', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'ASC')->get();
+        return view('pages.planning', compact('particips', 'sors'));
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planning', compact('particips', 'sors'));
@@ -62,7 +69,6 @@ class ParticipController extends Controller
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planningCreate2', compact('particips', 'sors'));
-
     }
 
     /**
