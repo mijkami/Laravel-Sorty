@@ -4,21 +4,22 @@
 <h1>Nouvelle participation (mode admin)</h1><br>
 {{-- ajouter "Nouvelle participation (mode admin)" --}}
 <a href="/particips">Retour arrière</a><br>
-{{session('name')." ".session('firstname')}}<br>
-{{-- 3 champs
-    - Un champ caché dont la value est  l'id du user connecte : voir session(id)
-    - Un champ idsor : un select dont les valeurs sont les id des sorties dont la date est à venir
-Definir un objet $sors du genre $sors=Sor::where(...,...,...)->orderBy.....
-Afficher les resultats dans le select a l'aide d'une boucle
 
-    comment_particip
-    sor_id
-    user_id --}}
-<?php
+{{-- TODO : ajouter champ select avec la liste de tous les utilisateurs par ordre alphabétique --}}
 
-    $sorFutur = $sors->Where('dat', '>=', today());
+<select name="sor_id" size=10>
+        <?Php
+            foreach ($users as $user){
+                    echo '<option value="'.$user->id.'"';
+                    if ($user->id==session('id')){
+                        echo 'selected="selected"';
+                    }
+                    echo '>'.$user->name." ".$user->firstname.'</option>';
 
-?>
+
+            }
+        ?>
+</select><br>
 
 
 
@@ -26,14 +27,10 @@ Afficher les resultats dans le select a l'aide d'une boucle
      @csrf
     <input type="hidden" name="user_id" value={{session('id')}}>
 
-    <select name="sor_id">
+    <select name="sor_id" size=5>
         <?Php
             foreach ($sorFutur as $sor){
-                // possibilité de changer Auth::user()->id par      session('id')
-                // ou une requête sql type DB:query pour remplacer le tout
-                if ($particips->where('sor_id',$sor->id)->where('user_id',Auth::user()->id)->count()==0){
                     echo '<option value="'.$sor->id.'">'.Date::parse($sor->dat)->format('l j F').", ".$sor->typ.'</option>';
-                }
             }
         ?>
     </select><br>

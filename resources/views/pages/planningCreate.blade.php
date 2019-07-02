@@ -26,7 +26,7 @@ Afficher les resultats dans le select a l'aide d'une boucle
      @csrf
     <input type="hidden" name="user_id" value={{session('id')}}>
 
-    <select name="sor_id">
+    <select name="sor_id" size=5>
         <?Php
             foreach ($sorFutur as $sor){
                 // possibilité de changer Auth::user()->id par      session('id')

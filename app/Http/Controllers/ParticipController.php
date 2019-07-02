@@ -66,9 +66,11 @@ class ParticipController extends Controller
 
     public function create2()
     {
+        $users = User::orderBy('name', 'ASC')->get();
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
-        return view('pages.planningCreate2', compact('particips', 'sors'));
+        $sorFutur = $sors->Where('dat', '>=', today());
+        return view('pages.planningCreate2', compact('users', 'particips', 'sorFutur'));
     }
 
     /**
@@ -119,7 +121,6 @@ class ParticipController extends Controller
     {
         $particip->update($request->all());
         return Redirect::to('/particips')->with('success', 'La participation est modifiée');
-
     }
 
     /**
