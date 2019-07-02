@@ -51,6 +51,19 @@ class DatabaseSeeder extends Seeder
         $user->statut = rand(1, 3);
         $user->ajour = true;
         $user->save();
+
+        //créer un user membre
+        $user = new User;
+        $user->name = 'b';
+        $user->firstname = 'b';
+        $user->email = 'b@b.fr';
+        $user->password = bcrypt('b');
+        $user->tel = '0692 000 000';
+        $user->role = 'membre';
+        $user->statut = rand(1, 3);
+        $user->ajour = true;
+        $user->save();
+
         // creation de 6 sorties
         for ($i = 0; $i < 6; $i++) {
             $date = date('d-m-Y');
