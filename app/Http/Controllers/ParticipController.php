@@ -21,7 +21,12 @@ Date::setLocale('fr');
 
 class ParticipController extends Controller
 {
-    public function home()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         if (is_null(Auth::user())) { } else {
             session(['role' => User::find(Auth::user()->id)->role]);
@@ -36,25 +41,23 @@ class ParticipController extends Controller
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planning', compact('particips', 'sors'));
+        session(['page' => "pages.planning"]);
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function show(Particip $particip)
     {
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planning', compact('particips', 'sors'));
+        session(['page' => "pages.planning"]);
     }
+
 
     public function archives(){
         $archives = Particip::orderBy('inscription', 'ASC')->get();
-        $sors = Sor::orderBy('dat', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'DESC')->get();
         return view('pages.archives', compact('archives', 'sors'));
+        session(['page' => "pages.archives"]);
     }
 
     /**
@@ -100,10 +103,7 @@ class ParticipController extends Controller
      * @param  \App\Particip  $particip
      * @return \Illuminate\Http\Response
      */
-    public function show(Particip $particip)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -138,7 +138,7 @@ class ParticipController extends Controller
     public function destroy(Particip $particip)
     {
         $particip->delete();
-        return Redirect::to('/particips')->with('success', 'La  participation est supprimée !');
+        return Redirect::to(session('page'))->with('success', 'La  participation est supprimée !');
     }
 
     public function destroyForm( Particip $particip)

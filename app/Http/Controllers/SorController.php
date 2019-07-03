@@ -25,17 +25,6 @@ class SorController extends Controller
      */
     public function index()
     {
-        // if (is_null(Auth::user())) { } else {
-        //     session(['role' => User::find(Auth::user()->id)->role]);
-        //     session(['firstname' => User::find(Auth::user()->id)->firstname]);
-        //     session(['name' => Auth::user()->name]);
-        //     session(['id' => Auth::user()->id]);
-        // }
-        //fin de définition var session
-        //usage :
-        //session('role')
-
-
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.sorties', compact('sors'));
     }
