@@ -138,11 +138,11 @@ class ParticipController extends Controller
     public function destroy(Particip $particip)
     {
         $particip->delete();
-        return Redirect::to('pages.planning')->with('success', 'La  participation est supprimée !');
+        return Redirect::to('/particips')->with('success', 'La  participation est supprimée !');
     }
 
     public function destroyForm( Particip $particip)
     {
-        return view('pages.planningDelete', compact( 'particip'));
+        return view('pages.planningDelete', compact('particip'));
     }
 }
