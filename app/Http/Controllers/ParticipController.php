@@ -41,23 +41,12 @@ class ParticipController extends Controller
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planning', compact('particips', 'sors'));
-        session(['page' => "pages.planning"]);
     }
-
-    public function show(Particip $particip)
-    {
-        $particips = Particip::orderBy('inscription', 'ASC')->get();
-        $sors = Sor::orderBy('dat', 'ASC')->get();
-        return view('pages.planning', compact('particips', 'sors'));
-        session(['page' => "pages.planning"]);
-    }
-
 
     public function archives(){
         $archives = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'DESC')->get();
         return view('pages.archives', compact('archives', 'sors'));
-        session(['page' => "pages.archives"]);
     }
 
     /**

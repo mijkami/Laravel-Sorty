@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
+
 <h1>Sorties prochaines & Participants</h1><br>
 <?php
+    session(['page' => "/particips"]);
     if (session('role')=='admin' or session('role')=='superadmin'){
         echo '<h4><a href="/particips/create2">Création de participation (mode administrateur)</a></h4>';
     } elseif (session('role')=='membre'){
