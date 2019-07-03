@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h3>Suppression de sortie {{ $sor->typ . ' du ' . Date::parse($sor->dat)->format('l j F')}}</h3>
+<h3>Suppression de la sortie {{ $sor->typ . ' du ' . Date::parse($sor->dat)->format('l j F')}}</h3>
 <a href="/sors">Retour arrière</a><br>
 
 {{-- store => update --}}
