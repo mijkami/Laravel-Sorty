@@ -39,9 +39,9 @@
                         <li class="nav-item">
                              <a class="nav-link" href="{{ route('particips.index') }}">{{ __('>planning') }}</a>
                         </li>
-                        {{-- <li class="nav-item">
-                             <a class="nav-link" href="{{ route('archives.index') }}">{{ __('> archives') }}</a>
-                        </li> --}}
+                        <li class="nav-item">
+                             <a class="nav-link" href="{{ route('particips.archives') }}">{{ __('>archives') }}</a>
+                        </li>
                         <li class="nav-item">
                              <a class="nav-link" href="/sors">{{ __('>sorties') }}</a>
                         </li>

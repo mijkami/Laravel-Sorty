@@ -51,6 +51,12 @@ class ParticipController extends Controller
         return view('pages.planning', compact('particips', 'sors'));
     }
 
+    public function archives(){
+        $archives = Particip::orderBy('inscription', 'ASC')->get();
+        $sors = Sor::orderBy('dat', 'ASC')->get();
+        return view('pages.archives', compact('archives', 'sors'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -131,6 +137,12 @@ class ParticipController extends Controller
      */
     public function destroy(Particip $particip)
     {
-        //
+        $particip->delete();
+        return Redirect::to('pages.planning')->with('success', 'La  participation est supprimée !');
+    }
+
+    public function destroyForm( Particip $particip)
+    {
+        return view('pages.planningDelete', compact( 'particip'));
     }
 }
