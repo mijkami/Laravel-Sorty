@@ -24,6 +24,7 @@ class CreateParticipsTable extends Migration
             $table->string('typ')->default("typ");
 
             // ajout des liaisons entre tables
+            //  foreign (..... ) ->onDelete('cascade') permet de sélectionner / supprimer les liens
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('sor_id')->references('id')->on('sors')->onDelete('cascade');
         });
