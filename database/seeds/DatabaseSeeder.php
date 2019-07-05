@@ -40,12 +40,24 @@ class DatabaseSeeder extends Seeder
             $user->save();
         }
 
-        //créer un user admin
+        //créer un user superadmin
         $user = new User;
         $user->name = 'a';
         $user->firstname = 'a';
         $user->email = 'a@a.fr';
         $user->password = bcrypt('a');
+        $user->tel = '0692 000 000';
+        $user->role = 'superadmin';
+        $user->statut = rand(1, 3);
+        $user->ajour = true;
+        $user->save();
+
+        //créer un user admin
+        $user = new User;
+        $user->name = 'b';
+        $user->firstname = 'b';
+        $user->email = 'b@b.fr';
+        $user->password = bcrypt('b');
         $user->tel = '0692 000 000';
         $user->role = 'admin';
         $user->statut = rand(1, 3);
@@ -54,12 +66,24 @@ class DatabaseSeeder extends Seeder
 
         //créer un user membre
         $user = new User;
-        $user->name = 'b';
-        $user->firstname = 'b';
-        $user->email = 'b@b.fr';
-        $user->password = bcrypt('b');
+        $user->name = 'c';
+        $user->firstname = 'c';
+        $user->email = 'c@c.fr';
+        $user->password = bcrypt('c');
         $user->tel = '0692 000 000';
         $user->role = 'membre';
+        $user->statut = rand(1, 3);
+        $user->ajour = true;
+        $user->save();
+
+        //créer un user invité
+        $user = new User;
+        $user->name = 'Invité';
+        $user->firstname = 'Bob';
+        $user->email = 'invite@invite.fr';
+        $user->password = bcrypt('invité');
+        $user->tel = '0000';
+        $user->role = 'invité';
         $user->statut = rand(1, 3);
         $user->ajour = true;
         $user->save();
@@ -80,7 +104,7 @@ class DatabaseSeeder extends Seeder
         // creation de 20 participations sur les sorties existantes et les users existants sor_id et user_id min et max
         for ($i = 0; $i < 20; $i++) {
             $particip = new Particip;
-            $particip->comment_particip = $faker->text;
+            $particip->comment_particip = $faker->sentence(5);
             $particip->sor_id =  rand(Sor::min('id'), Sor::max('id'));
             $particip->user_id =  rand(User::min('id'), User::max('id'));
             $particip->typ = 'typ';
