@@ -16,7 +16,7 @@ Date de la sortie : {{ Date::parse($particip->Sor->dat)->format('l j F') }}<br>
     {{ csrf_field() }}
     {{ method_field('PuT') }}
 
-    @if (session('role')=='admin' OR session('role')=='super-admin')
+    @if (session('role')=='admin' OR session('role')=='superadmin')
 
         Une nouvelle date d'inscription implique un nouvel ordre de priorité dépendant de cette date à utiliser pour changer l'ordre des priorités,
         par exemple : encadrants, débutants dans une sortie encadrée, ...<br>
