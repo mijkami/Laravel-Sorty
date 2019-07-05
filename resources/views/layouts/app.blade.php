@@ -19,6 +19,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <script src="https://cdn.tiny.cloud/1/yw2alpvctek8wufoxpxk8yffewrm15kpefdwcxbq1phsmq9a/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+        selector: 'textarea',
+        height: 300,
+        width: 800,
+        menubar: false,
+        plugins: ' link ',
+        toolbar: 'bold italic underline forecolor  fontsizeselect | alignleft aligncenter alignright | link removeformat |',
+        entity_encoding : "raw"
+        setup: function (editor) {editor.on('BeforeSetContent', function (contentEvent) {contentEvent.content = contentEvent.content.replace(/\r\n?\r?\n/g, '<br />');})},
+        });
+    </script>
 </head>
 <body>
     <div id="app">
