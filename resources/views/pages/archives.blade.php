@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-<h3>Archives des sorties passées</h3><br>
+<h2>Archives des sorties passées</h2><br>
 <?php
     session(['page' => "/archives"]);
     //affichage des sorties
     $sorPasse = $sors->Where('dat', '<', today());
 
     foreach ($sorPasse as $sor) {
-        echo "<div class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
+        echo "<div class='mt-3'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
         $archivesPlanning = $archives->Where('sor_id','=', $sor->id);
         $participNum=0;
