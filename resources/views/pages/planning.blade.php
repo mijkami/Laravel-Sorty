@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<h3>Sorties prochaines & Participants</h3>
+<h2>Sorties prochaines & Participants</h2>
 <?php
     session(['page' => "/particips"]);
     if (session('role')=='admin' or session('role')=='superadmin'){
+        echo '<a href="/sors/create"><p>Créer une sortie</p></a>';
         echo '<a href="/particips/create2"><p>Création de participation (mode administrateur)</p></a>';
     } elseif (session('role')=='membre'){
         echo '<a href="/particips/create"><p>Création de participation</p></a>';
@@ -14,7 +15,11 @@
 
     $sorFutur = $sors->Where('dat', '>=', today());
     foreach ($sorFutur as $sor) {
-        echo "<div class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
+        echo "<div class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
+        if (session('role')=='admin' or session('role')=='superadmin'){
+            echo ' | <a href="/sors/'.$sor->id.'/edit"><i class="far fa-edit"> Éditer</i></a> '.'/ <a href="/sors/'.$sor->id.'/destroy"><i class="far fa-times"> Détruire</i></a>';
+        }
+        echo "</p>";
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
         $participSor = $particips->Where('sor_id','=', $sor->id);
         $participNum=0;
