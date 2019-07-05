@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <h3>Sorties prochaines & Participants</h3>
 <?php
     session(['page' => "/particips"]);
@@ -15,7 +14,7 @@
 
     $sorFutur = $sors->Where('dat', '>=', today());
     foreach ($sorFutur as $sor) {
-        echo "<div class='mb-5'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
+        echo "<div class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
         $participSor = $particips->Where('sor_id','=', $sor->id);
         $participNum=0;
