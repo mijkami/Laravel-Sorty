@@ -28,7 +28,7 @@
         menubar: false,
         plugins: ' link ',
         toolbar: 'bold italic underline forecolor  fontsizeselect | alignleft aligncenter alignright | link removeformat |',
-        entity_encoding : "raw"
+        entity_encoding : "raw",
         setup: function (editor) {editor.on('BeforeSetContent', function (contentEvent) {contentEvent.content = contentEvent.content.replace(/\r\n?\r?\n/g, '<br />');})},
         });
     </script>
@@ -55,9 +55,6 @@
                         </li>
                         <li class="nav-item">
                              <a class="nav-link" href="{{ route('particips.archives') }}">{{ __('Archives') }}</a>
-                        </li>
-                        <li class="nav-item">
-                             <a class="nav-link" href="/sors">{{ __('?Sorties?') }}</a>
                         </li>
                         @if (session('role')=='admin' OR session('role')=='superadmin')
                         <li class="nav-item">

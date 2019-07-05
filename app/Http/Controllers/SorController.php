@@ -25,8 +25,7 @@ class SorController extends Controller
      */
     public function index()
     {
-        $sors = Sor::orderBy('dat', 'ASC')->get();
-        return view('pages.sorties', compact('sors'));
+        //
     }
 
     /**
@@ -52,7 +51,7 @@ class SorController extends Controller
         Sor::create($request->all());
         // return Redirect::to('/sors');
         // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
-        return Redirect::to('/sors')->with('success', "La sortie est créée.");
+        return Redirect::to('/')->with('success', "La sortie est créée.");
     }
 
     /**
@@ -89,7 +88,7 @@ class SorController extends Controller
         $sor->update($request->all());
 
         // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
-        return Redirect::to('/sors')->with('success', 'La  fiche de ' . $sor->typ . ' du ' . $sor->dat . ' est modifiée');
+        return Redirect::to('/')->with('success', 'La  fiche de ' . $sor->typ . ' du ' . $sor->dat . ' est modifiée');
     }
 
     /**
@@ -103,7 +102,7 @@ class SorController extends Controller
         $sor->delete();
         // return Redirect::to('/sors');
         // /!\ rappel pour SORTY ajout du flash message en redirect de cette manière :
-        return Redirect::to('/sors')->with('success', 'La  fiche de ' . $sor->typ . ' du ' . $sor->dat . ' est détruite.');
+        return Redirect::to('/')->with('success', 'La  fiche de ' . $sor->typ . ' du ' . $sor->dat . ' est détruite.');
     }
 
     public function destroyForm(Sor $sor)
