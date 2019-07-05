@@ -28,8 +28,12 @@
         menubar: false,
         plugins: ' link ',
         toolbar: 'bold italic underline forecolor  fontsizeselect | alignleft aligncenter alignright | link removeformat |',
-        entity_encoding : "raw",
+        entity_encoding : 'raw',
         setup: function (editor) {editor.on('BeforeSetContent', function (contentEvent) {contentEvent.content = contentEvent.content.replace(/\r\n?\r?\n/g, '<br />');})},
+        // extend_valid_elements : "table[class='col col-lg-7 p-0 mb-2']";
+        forced_root_block : 'p',
+        forced_root_block_attrs: { "class": 'col col-lg-7 p-0 mb-2'},
+
         });
     </script>
 </head>
