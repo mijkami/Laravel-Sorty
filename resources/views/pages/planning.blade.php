@@ -15,7 +15,7 @@
 
     $sorFutur = $sors->Where('dat', '>=', today());
     foreach ($sorFutur as $sor) {
-        echo "<div class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
+        echo "<section class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
         if (session('role')=='admin' or session('role')=='superadmin'){
             echo ' | <a href="/sors/'.$sor->id.'/edit"><i class="far fa-edit"> Éditer</i></a> '.'/ <a href="/sors/'.$sor->id.'/destroy"><i class="far fa-times"> Effacer</i></a>';
         }
@@ -29,13 +29,18 @@
             // tester si le $particip->user_id correspond à la session de id
             echo '<div class="row justify-content-end no-gutters ml-2">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id)){
-                // liens de suppression et de modification;
                 echo '<div class="col-2 col-md-1"><a href="/particips/'.$particip->id.'/destroy"><i class="fas fa-user-times"></i></a> / <a href="/particips/'.$particip->id.'/edit"><i class="fas fa-user-edit"></i></a></div> ';
             }
             //
-            echo '<div class="col-5 col-sm-4 col-md-2">'.++$participNum.". ".$particip->User->firstname." ".$particip->User->name."</div><div class='col-5 col-sm-4 col-md-5 '>".$particip->comment_particip.'</div><div class="col-4 col-md-4"></div></div>';
+            echo '<div class="col-5 col-sm-4 col-md-2">'.++$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div><div class="col-5 col-sm-4 col-md-5">';
+            if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id)){
+                echo $particip->comment_particip;
+           }
+
+            echo '</div><div class="col-4 col-md-4"></div></div>';
+
         }
-        echo "</div>";
+        echo "</section>";
     }
 
 
