@@ -3,10 +3,14 @@
 <h2>Sorties prochaines & Participants</h2>
 <?php
     session(['page' => "/particips"]);
-    if (session('role')=='admin' or session('role')=='superadmin'){
+    if (session('role')=='superadmin'){
         echo '<a href="/sors/create"><p>Créer une sortie</p></a>';
         echo '<a href="/particips/create2"><p>Création de participation (mode administrateur)</p></a>';
-    } elseif (session('role')=='membre'){
+    }
+    elseif (session('role')=='admin'){
+        echo '<a href="/particips/create2"><p>Création de participation (mode administrateur)</p></a>';
+    }
+    elseif (session('role')=='membre'){
         echo '<a href="/particips/create"><p>Création de participation</p></a>';
     }
 
@@ -32,12 +36,20 @@
                 echo '<div class="col-2 col-md-1"><a href="/particips/'.$particip->id.'/destroy"><i class="fas fa-user-times"></i></a> / <a href="/particips/'.$particip->id.'/edit"><i class="fas fa-user-edit"></i></a></div> ';
             }
             //
-            echo '<div class="col-5 col-sm-4 col-md-2">'.++$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div><div class="col-5 col-sm-4 col-md-5">';
-            if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id)){
-                echo $particip->comment_particip;
+            echo '<div class="col-5 col-sm-4 col-md-2">'.++$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
+            echo '<div class="col-2 col-md-2">';
+            if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
+                echo $particip->User->tel;
            }
-
-            echo '</div><div class="col-4 col-md-4"></div></div>';
+            echo '</div><div class="col-2 col-md-2">';
+            if (session('role')=='admin' or session('role')=='superadmin'){
+                echo Date::parse($particip->created_at)->format('j F');
+            }
+            echo '</div><div class="col-5 col-sm-4 col-md-5">';
+            if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
+                echo $particip->comment_particip;
+            }
+            echo '</div></div>';
 
         }
         echo "</section>";
