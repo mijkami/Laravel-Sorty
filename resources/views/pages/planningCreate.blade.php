@@ -2,7 +2,6 @@
 @section('content')
 
 <h1>Nouvelle participation (mode membre)</h1><br>
-{{-- ajouter "Nouvelle participation (mode admin)" --}}
 <a href="/particips">Retour arrière</a><br>
 {{session('name')." ".session('firstname')}}<br>
 {{-- 3 champs
