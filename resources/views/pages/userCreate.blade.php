@@ -1,10 +1,8 @@
 @extends('layouts.app')
 @section('content')
 @if (session('role')=='superadmin')
-    <h1>Création d'utilisateurs</h1><br>
-    <a href="/users">Retour arrière</a><br>
-
-
+    <h2>Création d'utilisateurs</h2>
+    <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
     {{-- // contenu de usercreate
     // initier un formulaire avec
 

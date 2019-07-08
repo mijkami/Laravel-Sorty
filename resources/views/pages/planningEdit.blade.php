@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<h2>Modifier une participation</h2><br>
+<a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
 
-<h1>Modifier une participation</h1><br>
-<a href="/particips">Retour arrière</a><br>
-{{-- store => update --}}
-
-
-    Participant : {{$particip->User->name.' '.$particip->User->firstname}}<br>
-Date de la sortie : {{ Date::parse($particip->Sor->dat)->format('l j F') }}<br>
+<p>Participant : {{$particip->User->name.' '.$particip->User->firstname}}</p>
+<p>Date de la sortie : {{ Date::parse($particip->Sor->dat)->format('l j F') }}</p>
 
 
 
@@ -29,8 +26,7 @@ Date de la sortie : {{ Date::parse($particip->Sor->dat)->format('l j F') }}<br>
     <h4>Modifier le commentaire du participant</h4>
 
 
-
-        <textarea rows="4" cols="50" name="comment_particip" value="{{ $particip->comment_particip }}"> {{ $particip->comment_particip }}</textarea><br>
+        <textarea rows="1" cols="60" maxlength="60" name="comment_particip" value="{{ $particip->comment_particip }}" class="mceNoEditor"> {{ $particip->comment_particip }}</textarea><br>
         <button type="submit">Enregistrer</button>
 </form>
 
