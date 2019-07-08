@@ -4,14 +4,14 @@
 <?php
     session(['page' => "/particips"]);
     if (session('role')=='superadmin'){
-        echo '<a href="/sors/create"><p>Créer une sortie</p></a>';
-        echo '<a href="/particips/create2"><p>Création de participation (mode administrateur)</p></a>';
+        echo '<a href="/sors/create"><p><i class="fas fa-shuttle-van"> Créer une sortie</i></p></a>';
+        echo '<a href="/particips/create2"><p><i class="fa fa-plus"></i> Création de participation (mode administrateur)</p></a>';
     }
     elseif (session('role')=='admin'){
-        echo '<a href="/particips/create2"><p>Création de participation (mode administrateur)</p></a>';
+        echo '<a href="/particips/create2"><p><i class="fas fa-plus"></i> Création de participation (mode administrateur)</p></a>';
     }
     elseif (session('role')=='membre'){
-        echo '<a href="/particips/create"><p>Création de participation</p></a>';
+        echo '<a href="/particips/create"><p><i class="fas fa-plus"> Création de participation</i></p></a>';
     }
 
 
