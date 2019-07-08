@@ -22,7 +22,8 @@
     <script src="https://cdn.tiny.cloud/1/yw2alpvctek8wufoxpxk8yffewrm15kpefdwcxbq1phsmq9a/tinymce/5/tinymce.min.js"></script>
     <script>
         tinymce.init({
-        selector: 'textarea',
+        selector: "textarea.editme",
+        selector : "textarea:not(.mceNoEditor)",
         height: 300,
         width: 800,
         menubar: false,
