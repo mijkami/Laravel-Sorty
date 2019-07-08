@@ -2,8 +2,14 @@
 @section('content')
 
 <h1>Nouvelle participation (mode membre)</h1><br>
-<a href="/particips">Retour arrière</a><br>
+<a href="{{ URL::previous() }}">Annuler</a><br>
 {{session('name')." ".session('firstname')}}<br>
+
+<p>Les dates d'inscription sont rentrées automatiquement, elles définissent l'ordre de priorité à la sortie, la liste d'attente est gérée automatiquement.<br>
+Si vous êtes en liste d'attente, vous recevrez un e-mail si une place s'est libérée.
+</p>
+
+
 {{-- 3 champs
     - Un champ caché dont la value est  l'id du user connecte : voir session(id)
     - Un champ idsor : un select dont les valeurs sont les id des sorties dont la date est à venir
@@ -36,8 +42,7 @@ Afficher les resultats dans le select a l'aide d'une boucle
             }
         ?>
     </select><br>
-    <textarea rows="4" cols="50" name="comment_particip"> Commentaire...</textarea><br>
-
+    <textarea rows="1" cols="60" maxlength="60" name="comment_particip" class="mceNoEditor" placeholder="Entrez un commentaire ici si besoin !"></textarea><br>
     <button type="submit">Enregistrer</button>
 </form>
 
