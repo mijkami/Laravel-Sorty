@@ -6,7 +6,7 @@
     <form  method="POST" action="{{ route('particips.destroy', $particip->id) }}">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
-        <button class="ml-4 p-2" type="submit">Supprimer</button>
+        <button class="ml-4 p-2 btn btn-danger" type="submit">Supprimer</button>
         {{-- tODO possibilité d'ajouter une confirmation supplémentaire cf JS/CSS, etc --}}
     </form>
 @endif
