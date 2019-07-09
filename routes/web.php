@@ -23,6 +23,7 @@ Route::get('sors/{sor}/destroy', 'SorController@destroyForm')->name('sors.grenad
 Route::resource('particips', 'ParticipController');
 Route::get('particips/{particip}/destroy', 'ParticipController@destroyForm')->name('particips.grenade');
 Route::get('archives', 'ParticipController@archives')->name('particips.archives');
+Route::get('send', 'ParticipController@send')->name('send');
 
 Route::resource('usertemps', 'UsertempController');
 

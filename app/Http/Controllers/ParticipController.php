@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Jenssegers\Date\Date;
-use Carbon\Carbon;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -134,4 +133,30 @@ class ParticipController extends Controller
     {
         return view('pages.planningDelete', compact('particip'));
     }
+
+    public function send() {
+     $title = 'essai';
+
+    $comment = 'comment';
+    $text = 'corps du message';
+    // $email = $request->input('email');
+
+    $emails= array('dgaillot.dev@gmail.com');
+
+    $content = "sortie parapangue";
+    $user_name = "sortie parapangue";
+    //$emails = ['test1@hotmail.com','test2@hotmail.com','test3@hotmail.com'];
+    //$data = ['email'=> $user_email,'name'=> $user_name,'subject' => $title, 'content' => $content];
+    $data = ['subject' => $title, 'content' => $content];
+        // envoi du mail basé sur la vue send2
+    Mail::send('bodymail', $data, function($message) use($emails, $data)
+        {
+            $subject=$data['subject'];
+            $message->from('sortie@parapangue.re');
+            $message->to($emails);
+            $message->subject($subject);
+
+        });
+  return Redirect::to('/particips')->with('success', "Email envoyé.");
+}
 }
