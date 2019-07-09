@@ -18,20 +18,20 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
-    'host' => env('MAIL_HOST', 'smtp.hostinger.fr'),
+    'host' => env('MAIL_HOST', '127.0.0.1'),
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 1025),
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'sortie@parapangue.re'),
-        'name' => env('MAIL_FROM_NAME', 'example'),
-    ],
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'sortie@parapangue.re'),
+    //     'name' => env('MAIL_FROM_NAME', 'example'),
+    // ],
 
     /*
     |tls ou ssl
     |
     */
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', null),
 
     'username' => env('MAIL_USERNAME'),
 

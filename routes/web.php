@@ -24,6 +24,7 @@ Route::resource('particips', 'ParticipController');
 Route::get('particips/{particip}/destroy', 'ParticipController@destroyForm')->name('particips.grenade');
 Route::get('archives', 'ParticipController@archives')->name('particips.archives');
 Route::get('send', 'ParticipController@send')->name('send');
+Route::get('formemail/{sor}', 'ParticipController@formemail')->name('formemail');
 
 Route::resource('usertemps', 'UsertempController');
 

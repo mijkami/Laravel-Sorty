@@ -134,22 +134,24 @@ class ParticipController extends Controller
         return view('pages.planningDelete', compact('particip'));
     }
 
-    public function send() {
-     $title = 'essai';
+    public function send( Request $request, Sor $sor )
+    {
+        // corps du message qui sera envoyé en même temps que bodymail :
+        session(['mailtext' => $request->input('text')]);
 
-    $comment = 'comment';
-    $text = 'corps du message';
-    // $email = $request->input('email');
 
-    $emails= array('dgaillot.dev@gmail.com');
-
-    $content = "sortie parapangue";
-    $user_name = "sortie parapangue";
-    //$emails = ['test1@hotmail.com','test2@hotmail.com','test3@hotmail.com'];
-    //$data = ['email'=> $user_email,'name'=> $user_name,'subject' => $title, 'content' => $content];
-    $data = ['subject' => $title, 'content' => $content];
+        $title = 'Inscription à une sortie Parapangue';
+        // $email = $request->input('email');
+        // $noms = $request->input('noms');
+        // TODO créer une variable de session sur les noms pour envoyer sur bodymail
+        $emails= array('dgaillot.dev@gmail.com');
+        $content = "sortie parapangue";
+        $user_name = "sortie parapangue";
+        //$emails = ['test1@hotmail.com','test2@hotmail.com','test3@hotmail.com'];
+        //$data = ['email'=> $user_email,'name'=> $user_name,'subject' => $title, 'content' => $content];
+        $data = ['subject' => $title, 'content' => $content];
         // envoi du mail basé sur la vue send2
-    Mail::send('bodymail', $data, function($message) use($emails, $data)
+        Mail::send('bodymail', $data, function($message) use($emails, $data)
         {
             $subject=$data['subject'];
             $message->from('sortie@parapangue.re');
@@ -157,6 +159,11 @@ class ParticipController extends Controller
             $message->subject($subject);
 
         });
-  return Redirect::to('/particips')->with('success', "Email envoyé.");
-}
+    return Redirect::to('/particips')->with('success', "Email envoyé.");
+    }
+
+    public function formemail(Sor $sor)
+    {
+        return view('pages.formemail', compact('sor'));
+    }
 }

@@ -18,7 +18,7 @@
     foreach ($sorFutur as $sor) {
         echo "<section class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
         if (session('role')=='admin' or session('role')=='superadmin'){
-            echo ' | <a href="/sors/'.$sor->id.'/edit"><i class="far fa-edit"> Éditer</i></a> '.'/ <a href="/sors/'.$sor->id.'/destroy"><i class="far fa-times"> Effacer</i></a>';
+            echo ' | <a href="formemail/'.$sor->id.'"><i class="far fa-envelope"></i> Envoi mail</a> / <a href="/sors/'.$sor->id.'/edit"><i class="far fa-edit"> Éditer</i></a> / <a href="/sors/'.$sor->id.'/destroy"><i class="far fa-times"> Effacer</i></a>';
         }
         echo "</p>";
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
