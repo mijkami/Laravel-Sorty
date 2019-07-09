@@ -24,7 +24,7 @@
         tinymce.init({
         selector: "textarea.editme",
         selector : "textarea:not(.mceNoEditor)",
-        height: 300,
+        height: 240,
         width: 800,
         menubar: false,
         plugins: ' link ',
