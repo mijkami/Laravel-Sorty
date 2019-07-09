@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>Nouvelle participation (mode membre)</h1><br>
-<a href="{{ URL::previous() }}">Annuler</a><br>
+<h2>Nouvelle participation (mode membre)</h2>
+<a href="{{ URL::previous() }}">Annuler</a>
 {{session('name')." ".session('firstname')}}<br>
 
 <p>Les dates d'inscription sont rentrées automatiquement, elles définissent l'ordre de priorité à la sortie, la liste d'attente est gérée automatiquement.<br>
@@ -15,10 +15,7 @@ Si vous êtes en liste d'attente, vous recevrez un e-mail si une place s'est lib
     - Un champ idsor : un select dont les valeurs sont les id des sorties dont la date est à venir
 Definir un objet $sors du genre $sors=Sor::where(...,...,...)->orderBy.....
 Afficher les resultats dans le select a l'aide d'une boucle
-
-    comment_particip
-    sor_id
-    user_id --}}
+--}}
 <?php
 
     $sorFutur = $sors->Where('dat', '>=', today());
