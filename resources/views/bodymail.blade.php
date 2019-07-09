@@ -10,7 +10,9 @@
     <p>Element fixe du mail (adresse, entête, tel, logo).</p>
     element dynamique :
         - caractéristiques sortie (date, type, commentaire)
-            {{session('mailtext')}}
+            <?php
+                echo session('mailtext');
+            ?>
         - participants
             {{-- {{session('participants')}} --}}
 </body>
