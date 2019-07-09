@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
 @if (session('role')=='admin' OR session('role')=='superadmin')
-<h2>Nouvelle participation (mode admin)</h2>
+<h3>Nouvelle participation (mode admin)</h3>
 <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
-
 <ol>
     <li>Pour inscrire un passager bi-place à une sortie, mettre 2x le nom du pilote bi-placeur.</li>
     <li>Pour inscrire un invité, choisir dans la liste des utilisateurs "Invité", celui-ci aura automatiquement une date d'inscription établie à J -4.<br>
@@ -15,35 +14,33 @@
 </ol>
 <form class="form-horizontal" method="POST" action="{{ route("particips.store") }}">
      @csrf
-    <div>
-        <div>
-            <select name="user_id" size=8 width=10 style="width:17em;">
-                <?Php
-                    foreach ($users as $user){
-                            echo '<option value="'.$user->id.'"';
-                            if ($user->id==session('id')){
-                                echo 'selected="selected"';
-                            }
-                            echo '>'.$user->name." ".$user->firstname.'</option>';
-                    }
-                ?>
-            </select>
-        </div>
-        <div>
-            <select name="sor_id" size=8 style="width:17em;">
-                <?Php
-                    foreach ($sorFutur as $sor){
-                            echo '<option value="'.$sor->id.'">'.Date::parse($sor->dat)->format('l j F').", ".$sor->typ.'</option>';
-                    }
-                ?>
-            </select>
-        </div>
+    <div class="row">
+        <h5 class="col-3 offset-md-1 font-weight-bold">Participants</h5>
+        <h5 class="col-3 ml-5 font-weight-bold">Sorties</h5>
     </div>
-
-    <textarea rows="2" cols="60" maxlength="60" name="comment_particip" class="mceNoEditor" placeholder="Emplacement pour commentaire"></textarea><br>
-    <button type="submit">Enregistrer</button>
+    <div class="row mb-4">
+        <select class="col-5 col-md-3 offset-md-1" name="user_id" size=8>
+            <?Php
+                foreach ($users as $user){
+                        echo '<option value="'.$user->id.'"';
+                        if ($user->id==session('id')){
+                            echo 'selected="selected"';
+                        }
+                        echo '>'.$user->name." ".$user->firstname.'</option>';
+                }
+            ?>
+        </select>
+        <select class="col-7 col-md-3 ml-md-5" name="sor_id" size=8>
+            <?Php
+                foreach ($sorFutur as $sor){
+                        echo '<option value="'.$sor->id.'">'.Date::parse($sor->dat)->format('l j F').", ".$sor->typ.'</option>';
+                }
+            ?>
+        </select>
+    </div>
+    <h5 class="col-3 font-weight-bold">Commentaire</h5>
+    <textarea class="col p-3" rows="2" cols="60" maxlength="60" name="comment_particip" class="mceNoEditor" placeholder="Emplacement pour commentaire."></textarea>
+    <button class="m-4 p-3 btn btn-success" type="submit">Enregistrer</button>
 </form>
-
-
 @endif
 @stop
