@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h2>Modifier une participation</h2><br>
+<h2>Modifier une participation</h2>
 <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
 
 <p>Participant : {{$particip->User->name.' '.$particip->User->firstname}}</p>
@@ -27,7 +27,7 @@
 
 
         <textarea rows="1" cols="60" maxlength="60" name="comment_particip" value="{{ $particip->comment_particip }}" class="mceNoEditor"> {{ $particip->comment_particip }}</textarea><br>
-        <button type="submit">Enregistrer</button>
+        <button class="m-4 p-3 btn btn-success" type="submit">Enregistrer</button>
 </form>
 
 @stop
