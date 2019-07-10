@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h2>Archives des sorties passées</h2><br>
-{{-- TODO ajout support google maps pour indiquer le lieu de la sortie effectuée (choisi le jour de la sortie) --}}
+{{-- #TODO ajout support google maps pour indiquer le lieu de la sortie effectuée (choisi le jour de la sortie) --}}
 <?php
     session(['page' => "/archives"]);
     //affichage des sorties
