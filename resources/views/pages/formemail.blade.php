@@ -39,7 +39,10 @@
             Coller ces variables dans un input ou textarea pour pouvoir les modifier.
             Ces champs sont récupérés avec la fonction request de input dans le controller (un pour users, un pour emails)
 
-            --}}
+            #TODO option  mémoriser l'auteur de l'envoi de l'email de rappel,
+            ce qui permettra d'envoyer un email automatique si personne ne l'a fait
+            // et envoi de rappel automatique si besoin 2 jours avant la sortie (J-2) -> CRON--}}
+
     {{-- <input type="text" name="text" value="{{ $mailtext }}">Contenu du mail<br> --}}
         {{-- <input type="text" name="firstname"> Prénom<br>
         <input type="email" name="email" value="email@google.com"> Email<br>

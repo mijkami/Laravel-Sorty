@@ -13,6 +13,8 @@
 
 
     //affichage des sorties
+    // #TODO option creer un role biplaceur qui pourrait
+    // s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité)
 
     $sorFutur = $sors->Where('dat', '>=', today());
     foreach ($sorFutur as $sor) {
