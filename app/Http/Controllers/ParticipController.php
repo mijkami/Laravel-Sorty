@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Jenssegers\Date\Date;
 use Illuminate\Mail\Mailable;
@@ -126,9 +127,81 @@ class ParticipController extends Controller
      */
     public function destroy(Particip $particip)
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+
+        //recherche date sortie
+        $idsorty = $particip->sor_id;
+        $idparticip = $particip->id;
+        $sor = Sor::find($idsorty);
+        $datsorty = $sor->dat;
+        $sortyname = Date::parse($datsorty)->format('l j F  ') . ' / sortie ' . $sor->typ;
+
+        //nb d'heures avant la sortie (pas de desinscription h-24)
+        $a = new Carbon($datsorty);
+        $now = Carbon::now();
+        $ecart = $a->diffInHours($now) + 5;
+
+        //id des participants à la sortie
+        //ORDRE  $ordre[n°] donne le rang
+        $idparticipants = Particip::where('sor_id', $idsorty)->orderBy('inscription', 'asc');
+        $idpars = $idparticipants->get();
+        $x = 0;
+        foreach ($idpars as $idpar) {
+            $x = $x + 1;
+            $ordre[$idpar->id] = $x;
+            $tri[$x] = $idpar->id;
+        }
+
+        //nb de participants
+        $nb = $idparticipants->count();
+
+        //premier en liste d'attente// note : last() ne fonctionne pas
+        if ($nb > 8) {
+            $user9 = Particip::find($tri[9])->user_id;
+            $user = User::find($user9);
+            $name9 = $user->firstname . ' ' . $user->name;
+            $email9 = $user->email;
+            $attente = $name9 . ' / tel : ' . $user->tel . ' / ' . $email9;
+        }
+
+        //flash notification à l'user connecté qui veut supprimer sa sortie trop tard
+        $text1 = '';
+        if ($nb == 5 and $ecart < 25 and session('role') <> 'admin' and session('role') <> 'superadmin') {
+            return Redirect::to(session('origine'))->with('error', 'Vous ne pouvez pas vous désinscrire ' . $ecart . ' heures avant la sortie. Elle pourra ainsi avoir lieu et les autres participants ne seront pas pénalisés. Trouvez un remplaçant : après son inscription, vous pourrez annuler votre participation.                     Si vous êtes noté absent, vous devrez payer la sortie.');
+        }
+
+        // flash demandant de prévenir le user 9 en liste d'attente intégrant la sortie
+        if ($nb > 8 and $ordre[$idparticip] < 9) {
+            $text1 = "Prévenez---- " . $attente . " ---- ce membre a intégré la sortie !!! merci !!!";
+
+            //*************************************************************************
+
+            // envoi mail integration du user 9 dans la liste des participants à la sortie
+            // préparation du mail
+            $title = 'integration à la sortie du ' . $sortyname;
+            $content = "sortie parapangue";
+            $data = ['subject' => $title, 'content' => $content];
+            $text = '<H3>Sortie du ' . $sortyname . '</H3> <br><br><b> ' . $name9 . '</b><br>Suite à une désinscription, vous faites désormais partie des participants à la sortie Parapangue <br><font color=blue><b>du ' . $sortyname . ' </font></b><br><br>Bons vols ... <br><br>     http://sorties.16mb.com/';
+            $emails = array($email9, 'gaillot.gege@gmail.com');
+            session(['text' => $text]);
+            // envoi du mail basé sur la vue send2 (view préformattée sur la reintegration à cette sortie)
+            //use($emails, $data)
+            Mail::send('/bodymail2', $data, function ($message) use ($emails, $data)
+            {
+                $subject = $data['subject'];
+                $message->from('sorties@parapangue.re');
+                $message->to($emails);
+                $message->subject($subject);
+            });
+        }
+        // effacement retour sur la page à l'origine de la suppression
         $particip->delete();
-        return Redirect::to(session('page'))->with('success', 'La  participation est supprimée !');
+        return Redirect::to(session('origine'))->with('success', 'Participation  supprimée ! ' . $text1);
+        // return Redirect::to('/home')->with('success', 'Participation  supprimée !');
     }
+
 
     public function destroyForm(Particip $particip)
     {
