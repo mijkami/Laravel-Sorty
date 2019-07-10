@@ -34,7 +34,7 @@
         </div>
             <h5 class="col-3 font-weight-bold">Commentaire</h5>
             <textarea rows="4" cols="50" name="comment_sor" class="editme" placeholder="Emplacement pour commentaire."></textarea>
-            {{-- TODO : ajouter un recap des informations rentrées précédemment avant le bouton enregistrer --}}
+            {{-- #TODO : ajouter un recap des informations rentrées précédemment avant le bouton enregistrer --}}
             <button class="m-4 p-3 btn btn-success" type="submit">Enregistrer</button>
     </form>
 

@@ -32,7 +32,7 @@
         {{ csrf_field() }}
         {{ method_field('GET') }}
     <textarea name="text" value="{{ $mailtext }}" class="editme">{{ $mailtext }}</textarea><br>
-    {{-- TODO Faire un foreach pour extraire 2 variables :
+    {{-- #TODO Faire un foreach pour extraire 2 variables :
             - la liste des participants
             - la liste des emails
             (voir pusharray, rajout des éléments à un tableau)
