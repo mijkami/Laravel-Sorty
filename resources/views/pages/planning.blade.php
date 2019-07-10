@@ -16,7 +16,7 @@
     // #TODO option creer un role biplaceur qui pourrait
     // s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité)
 
-    $sorFutur = $sors->Where('dat', '>=', today());
+    $sorFutur = DB::select('SELECT sors.* FROM sors WHERE sors.dat>= CURRENT_DATE ORDER BY sors.dat');
     foreach ($sorFutur as $sor) {
         echo "<section class='mt-4'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
         if (session('role')=='admin' or session('role')=='superadmin'){
@@ -45,7 +45,7 @@
            }
             echo '</div><div class="col-4 col-sm-2 col-md-1">';
             if (session('role')=='admin' or session('role')=='superadmin'){
-                echo Date::parse($particip->created_at)->format('j F');
+                echo Date::parse($particip->inscription)->format('j F');
             }
             echo '</div><div class="col-10 col-sm-10 col-md-3 col-lg-6">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
