@@ -42,7 +42,8 @@ class ParticipController extends Controller
         return view('pages.planning', compact('particips', 'sors'));
     }
 
-    public function archives(){
+    public function archives()
+    {
         $archives = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'DESC')->get();
         return view('pages.archives', compact('archives', 'sors'));
@@ -129,41 +130,44 @@ class ParticipController extends Controller
         return Redirect::to(session('page'))->with('success', 'La  participation est supprimée !');
     }
 
-    public function destroyForm( Particip $particip)
+    public function destroyForm(Particip $particip)
     {
         return view('pages.planningDelete', compact('particip'));
     }
 
-    public function send( Request $request, Sor $sor )
+    public function send(Request $request, Sor $sor)
     {
+
+        $emails = array('test@test.fr');
+        $particips = Particip::Where('sor_id', '=', $request->input('id'))->get();
+        foreach ($particips as $particip) {
+            $mail = $particip->User->email;
+            array_push($emails, $mail);
+        }
+        $email = $emails;
         // corps du message qui sera envoyé en même temps que bodymail :
         session(['mailtext' => $request->input('text')]);
 
-
         $title = 'Inscription à une sortie Parapangue';
-        // $email = $request->input('email');
-        // $noms = $request->input('noms');
-        // TODO créer une variable de session sur les noms pour envoyer sur bodymail
-        $emails= array('dgaillot.dev@gmail.com');
         $content = "sortie parapangue";
         $user_name = "sortie parapangue";
         //$emails = ['test1@hotmail.com','test2@hotmail.com','test3@hotmail.com'];
         //$data = ['email'=> $user_email,'name'=> $user_name,'subject' => $title, 'content' => $content];
         $data = ['subject' => $title, 'content' => $content];
         // envoi du mail basé sur la vue send2
-        Mail::send('bodymail', $data, function($message) use($emails, $data)
-        {
-            $subject=$data['subject'];
+        Mail::send('bodymail', $data, function ($message) use ($email, $data) {
+            $subject = $data['subject'];
             $message->from('sortie@parapangue.re');
-            $message->to($emails);
+            $message->to($email);
             $message->subject($subject);
-
         });
-    return Redirect::to('/particips')->with('success', "Email envoyé.");
+        return Redirect::to('/')->with('success', "Email envoyé.");
     }
 
     public function formemail(Sor $sor)
+
     {
-        return view('pages.formemail', compact('sor'));
+        $particips = Particip::Where('sor_id', '=', $sor->id)->get();
+        return view('pages.formemail', compact('sor', 'particips'));
     }
 }

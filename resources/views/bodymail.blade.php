@@ -7,13 +7,8 @@
     <title>Mail Sorties Parapangue</title>
 </head>
 <body>
-    <p>Element fixe du mail (adresse, entête, tel, logo).</p>
-    element dynamique :
-        - caractéristiques sortie (date, type, commentaire)
-            <?php
-                echo session('mailtext');
-            ?>
-        - participants
-            {{-- {{session('participants')}} --}}
+    <?php
+        echo session('mailtext');
+    ?>
 </body>
 </html>

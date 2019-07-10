@@ -10,8 +10,8 @@
         tinymce.init({
         selector: "textarea.editme",
         selector : "textarea:not(.mceNoEditor)",
-        height: 400,
-        width: 800,
+        height: 600,
+        width: 1200,
         menubar: false,
         plugins: ' link ',
         toolbar: 'bold italic underline forecolor  fontsizeselect | alignleft aligncenter alignright | link removeformat |',
@@ -20,43 +20,72 @@
     </script>
 </head>
 <body>
-    <h3>Création du mail</h3>
     <?php
-        //définition des variables :
-        // - caractéristiques de la sortie (date, type, commentaire)
-        // - liste des participants (noms, emails)
-        $mailtext = "<p class='font-weight-bold mb-0'>Sortie du ".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ."</p>";
-        $mailtext = $mailtext."<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
+
+        // corps du message
+                  $mailtext='';$virgule=''; $x=1;$title= Date::parse($sor->dat)->format('l j F  ').' / sortie '.$sor->typ;
+                  $comment=$sor->comment_sor; $n=$sor->id;
+                  session(['origine' => 'send/'.$n]);
+
+                $mailtext='<h3>Parapangue<br>'.$title.'</h3>';
+                $mailtext=$mailtext.'<font color="blue">'.$comment.'<br><br></font><b>Liste des participants</b>';
+                $mailtext=$mailtext.'<table style="text-align: left; width: 1000PX; height: 25px;" border="0" cellpadding="2" cellspacing="2"><tbody>';
+        // - liste des participants
+         foreach($particips as $particip)
+        {
+        if($particip->sor_id==$n)
+        {
+            if ($x == 9){$mailtext=$mailtext. "<tr><td><td><u><font color='blue'>Liste d'attente<br></u></tr>"; }
+                $mailtext=$mailtext. '<tr>
+                  <td style="width: 20px;">';
+                  $mailtext=$mailtext.  $x. '</td>
+                  <td style="width: 120px;"><font color="white"> </font>';
+                  if ($x > 8){$mailtext=$mailtext.  '<font color="blue">'; }
+                  $mailtext=$mailtext." ".$particip->User->firstname.' '.$particip->User->name.'</td>
+                  <td style="width: 90px;">';
+                  if ($x > 8){$mailtext=$mailtext.  '<font color="blue">'; }
+                  $mailtext=$mailtext.  '<FONT size="2pt"> tel :'. $particip->User->tel.' </td>
+                  <td style="width:60px;">';
+                   if ($x > 8){$mailtext=$mailtext.  '<font color="blue">'; }
+                 $mailtext=$mailtext.  '<FONT size="2pt"> inscr. :'.Date::parse($particip->inscription)->format(' j F ').'</font></td>
+                  <td style="width: 180px;">';
+                 if ($x > 8){$mailtext=$mailtext.  '<font color="blue">'; }
+                  $mailtext=$mailtext.  '<FONT size="2pt">'.$particip->comment_particip.' </td>
+                  </tr>' ;
+                  if ($x > 8){$mailtext=$mailtext.  ''; }
+                  $x=$x+1;
+            }
+        }
+            $mailtext=$mailtext. " </tbody></table>
+
+                    <div style='margin-left: 40px;'><br>
+                    Ce courriel est automatique et est envoyé aux différents participants, depuis le site parapangue.re<br>
+                    -> vous pouvez échanger entre vous pour préparer cette sortie, les emails des participants sont dans l'entête du courriel<br>
+                    -> accès au planning par le menu 'planning sorties' du site http://parapangue.re ou <br>
+                    -> directement par http://sorties.16mb.com<br>
+                    <br>
+                    INFOS : <br>
+                    -> le planning est définitif à H-24,<br>
+                    -> la participation financière à la sortie sera due en cas d'abscence (cf décision du cd)<br>
+                    -> le tel de Pierre Killian : 0692 77 73 58<br>
+                    -> le tel de Franck, notre chauffeur : 0692 92 24 32<br><br></font></div>
+                    ";
+
     ?>
-    <form class="form-horizontal" method="POST" action="{{ route("send") }}">
-        {{ csrf_field() }}
-        {{ method_field('GET') }}
-    <textarea name="text" value="{{ $mailtext }}" class="editme">{{ $mailtext }}</textarea><br>
-    {{-- #TODO Faire un foreach pour extraire 2 variables :
-            - la liste des participants
-            - la liste des emails
-            (voir pusharray, rajout des éléments à un tableau)
-            Coller ces variables dans un input ou textarea pour pouvoir les modifier.
-            Ces champs sont récupérés avec la fonction request de input dans le controller (un pour users, un pour emails)
+     <h3>Création du mail</h3>
+        <form class="form-horizontal" method="POST" action="{{ route('send') }}">
+            {{ csrf_field() }}
+            {{ method_field('GET') }}
+            <button type="submit" class="btn btn-primary">Envoyer le courriel</button> <a class="btn btn-secondary" href="/particips" role="button">annuler</a>
+            <textarea style="vertical-align: top;" rows = "5" cols = "90" name="commentmail" value="{{$mailtext}}"  >{{$mailtext}}</textarea>
+            <input  type="hidden"  name="title" value="{{$title}}">
+            <input  type="hidden"  name="id" value="{{$sor->id}}">
+            <input  type="hidden"  name="text" value="{{$mailtext}}">
 
-            #TODO option  mémoriser l'auteur de l'envoi de l'email de rappel,
-            ce qui permettra d'envoyer un email automatique si personne ne l'a fait
-            // et envoi de rappel automatique si besoin 2 jours avant la sortie (J-2) -> CRON--}}
-
-    {{-- <input type="text" name="text" value="{{ $mailtext }}">Contenu du mail<br> --}}
-        {{-- <input type="text" name="firstname"> Prénom<br>
-        <input type="email" name="email" value="email@google.com"> Email<br>
-        <input type="text" name="tel" value="0000000000"> Téléphone<br><br>
-        <input type="radio" name="role" value="invité"> Invité<br>
-        <input type="radio" name="role" value="membre" checked> Membre<br>
-        <input type="radio" name="role" value="admin"> Admin<br>
-        <input type="radio" name="role" value="superadmin"> Super-admin<br>
-        <input type="hidden" name="password" value={{bcrypt('abcd')}}> --}}
-        <button type="submit">Enregistrer</button>
-    </form>
-
+        </form>
 </body>
 </html>
+
 
 
 
