@@ -174,7 +174,7 @@ class ParticipController extends Controller
 
         // flash demandant de prévenir le user 9 en liste d'attente intégrant la sortie
         if ($nb > 8 and $ordre[$idparticip] < 9) {
-            $text1 = "Prévenez---- " . $attente . " ---- ce membre a intégré la sortie !!! merci !!!";
+            $text1 = "Le participant ---- " . $attente . " ---- a intégré la sortie !!! Un mail automatique a été envoyé, merci de le contacter pour en être certain !";
 
             //*************************************************************************
 
