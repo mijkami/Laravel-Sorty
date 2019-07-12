@@ -47,7 +47,9 @@ class ParticipController extends Controller
     {
         $archives = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'DESC')->get();
-        return view('pages.archives', compact('archives', 'sors'));
+        $sorPasse = DB::select('SELECT sors.* FROM sors WHERE sors.dat< CURRENT_DATE ORDER BY sors.dat');
+        return view('pages.archives', compact('archives', 'sors', 'sorPasse'));
+
     }
 
     /**
@@ -208,9 +210,9 @@ class ParticipController extends Controller
         return view('pages.planningDelete', compact('particip'));
     }
 
-    public function send(Request $request, Sor $sor)
+    public function send(Request $request)
     {
-
+        $id = $request->input('id');
         $emails = array('test@test.fr');
         $particips = Particip::Where('sor_id', '=', $request->input('id'))->get();
         foreach ($particips as $particip) {
@@ -219,7 +221,7 @@ class ParticipController extends Controller
         }
         $email = $emails;
         // corps du message qui sera envoyé en même temps que bodymail :
-        session(['mailtext' => $request->input('text')]);
+        session(['text' => $request->input('commentmail')]);
 
         $title = 'Inscription à une sortie Parapangue';
         $content = "sortie parapangue";
@@ -234,6 +236,13 @@ class ParticipController extends Controller
             $message->to($email);
             $message->subject($subject);
         });
+        // marque 'email envoyé' par xxxx
+        $sor = Sor::find($id);
+        $sor->email = 1;
+        $sor->autemail = session('firstname') . " " . session('name');
+        $sor->commentmail = session('text');
+        $sor->datemail = now();
+        $sor->update();
         return Redirect::to('/')->with('success', "Email envoyé.");
     }
 

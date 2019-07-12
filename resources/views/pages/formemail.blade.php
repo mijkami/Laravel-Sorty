@@ -23,13 +23,13 @@
     <?php
 
         // corps du message
-                  $mailtext='';$virgule=''; $x=1;$title= Date::parse($sor->dat)->format('l j F  ').' / sortie '.$sor->typ;
-                  $comment=$sor->comment_sor; $n=$sor->id;
-                  session(['origine' => 'send/'.$n]);
+            $mailtext='';$virgule=''; $x=1;$title= Date::parse($sor->dat)->format('l j F  ').' / sortie '.$sor->typ;
+            $comment=$sor->comment_sor; $n=$sor->id;
+            session(['origine' => 'send/'.$n]);
 
-                $mailtext='<h3>Parapangue<br>'.$title.'</h3>';
-                $mailtext=$mailtext.'<font color="blue">'.$comment.'<br><br></font><b>Liste des participants</b>';
-                $mailtext=$mailtext.'<table style="text-align: left; width: 1000PX; height: 25px;" border="0" cellpadding="2" cellspacing="2"><tbody>';
+            $mailtext='<h3>Parapangue<br>'.$title.'</h3>';
+            $mailtext=$mailtext.'<font color="blue">'.$comment.'<br><br></font><b>Liste des participants</b>';
+            $mailtext=$mailtext.'<table style="text-align: left; width: 1000PX; height: 25px;" border="0" cellpadding="2" cellspacing="2"><tbody>';
         // - liste des participants
          foreach($particips as $particip)
         {
