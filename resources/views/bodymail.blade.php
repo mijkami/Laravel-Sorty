@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        echo session('mailtext');
+        echo session('text');
     ?>
 </body>
 </html>
