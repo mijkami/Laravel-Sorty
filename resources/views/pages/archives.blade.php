@@ -5,7 +5,6 @@
 <?php
     session(['page' => "/archives"]);
     //affichage des sorties
-    $sorPasse = DB::select('SELECT sors.* FROM sors WHERE sors.dat< CURRENT_DATE ORDER BY sors.dat');
 
     foreach ($sorPasse as $sor) {
         echo "<section class='mt-3'><p class='font-weight-bold mb-0'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ;
