@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-@if (session('role')=='admin' OR session('role')=='superadmin')
 <h3>Nouvelle participation (mode admin)</h3>
 <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
 <ol>
@@ -42,5 +41,4 @@
     <textarea class="col p-3" rows="2" cols="60" maxlength="60" name="comment_particip" class="mceNoEditor" placeholder="Emplacement pour commentaire."></textarea>
     <button class="m-4 p-3 btn btn-success" type="submit">Enregistrer</button>
 </form>
-@endif
 @stop
