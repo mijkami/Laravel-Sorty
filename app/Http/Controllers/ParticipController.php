@@ -200,7 +200,7 @@ class ParticipController extends Controller
         }
         // effacement retour sur la page à l'origine de la suppression
         $particip->delete();
-        return Redirect::to(session('origine'))->with('success', 'Participation  supprimée ! ' . $text1);
+        return Redirect::to('/')->with('success', 'Participation  supprimée ! ' . $text1);
         // return Redirect::to('/home')->with('success', 'Participation  supprimée !');
     }
 
