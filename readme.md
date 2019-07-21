@@ -11,7 +11,7 @@
 
 Projet de gestion de sorties parapente.
 
-# Installer le projet :
+# Install the projet :
 
 - Clone the project
 - Go to the application folder using `cd` command on your cmd or terminal
