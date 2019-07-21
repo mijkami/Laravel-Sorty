@@ -27,9 +27,9 @@ Projet de gestion de sorties parapente.
 - Go to [localhost:8000](http://localhost:8000/)
 
 
-# Mailer + mail-catcher for dev environment
+# Mailer + "mail-catcher"-like for dev environment
 
-- Install a mail-catcher like [MailDev](https://danfarrelly.nyc/MailDev/)
+- Install [MailDev](https://danfarrelly.nyc/MailDev/)
 - Run `maildev` on an other cmd / terminal
 - Open your `.env` file and do the following changes:
     - `MAIL_HOST=127.0.0.1`
