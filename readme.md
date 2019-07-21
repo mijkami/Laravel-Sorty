@@ -10,3 +10,18 @@
 ## Laravel Sorty
 
 Projet de gestion de sorties parapente.
+
+# Installer le projet :
+
+- Clone the project
+- Go to the application folder using `cd` command on your cmd or terminal
+- Run `composer install` on your cmd / terminal
+- Create an new database (named for example `larashop`, using a tool like phpmyadmin)
+- Copy `.env.example` file to `.env` on the root folder
+- Open your `.env` file and change the database name (`DB_DATABASE`), username (`DB_USERNAME`) and password (`DB_PASSWORD`) fields corresponding to your configuration
+- Run `php artisan key:generate`
+- Run `php artisan migrate`
+- Run `php artisan serve`
+- Go to [localhost:8000](http://localhost:8000/)
+
+
