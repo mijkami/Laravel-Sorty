@@ -25,6 +25,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
         // définition variable $users
         $users = User::orderBy('name', 'ASC')->get();
         // aller à la vue 'index.blade.php' en passant la variable $users définie préalablement

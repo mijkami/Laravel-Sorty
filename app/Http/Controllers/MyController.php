@@ -123,6 +123,9 @@ class MyController extends Controller
 
     public function usersindex2()
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
         if (session('role') <> 'superadmin') {
             return Redirect::to('/')->with('error', 'accès non autorisé');
         }

@@ -67,6 +67,12 @@ class ParticipController extends Controller
 
     public function create2()
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
         $users = User::orderBy('name', 'ASC')->get();
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
@@ -105,6 +111,12 @@ class ParticipController extends Controller
      */
     public function edit(Particip $particip)
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
         return view('pages.planningEdit', compact('particip'));
     }
 
@@ -207,6 +219,12 @@ class ParticipController extends Controller
 
     public function destroyForm(Particip $particip)
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
         return view('pages.planningDelete', compact('particip'));
     }
 
@@ -247,8 +265,13 @@ class ParticipController extends Controller
     }
 
     public function formemail(Sor $sor)
-
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
         $particips = Particip::Where('sor_id', '=', $sor->id)->get();
         return view('pages.formemail', compact('sor', 'particips'));
     }
