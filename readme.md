@@ -27,7 +27,7 @@ Projet de gestion de sorties parapente.
 - Create an new database (named for example `sorty`, using a tool like phpmyadmin)
 - Copy `.env.example` file to `.env` on the root folder
 - Open your `.env` file and change the database name (`DB_DATABASE`), username (`DB_USERNAME`) and password (`DB_PASSWORD`) fields corresponding to your configuration
-- Run the following commands:
+- Run the following commands on your cmd or terminal in the project folder:
 - `php artisan key:generate`
 - `php artisan migrate`
 - `php artisan db:seed`
@@ -42,9 +42,14 @@ Projet de gestion de sorties parapente.
 - Open your `.env` file and do the following changes:
     - `MAIL_HOST=127.0.0.1`
     - `MAIL_PORT=1025`
+- After the `MAIL_PORT` line, add the following lines to show which within the sent mails which address was supposed to send these:
     - `MAIL_FROM_ADDRESS=test@test.com`
     - `MAIL_FROM_NAME=test@test.com`
-
+    
+- Run the following commands on your cmd or terminal in the project folder:
+- `php artisan cache:clear`
+- `php artisan route:clear`
+- `php artisan view:clear`
 - Go to the main application at [localhost:8000](http://localhost:8000/)
 - Log as an admin (create one or use the one from DatabaseSeeder.php)
 - Send emails through the admin panel / links
