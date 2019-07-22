@@ -11,7 +11,15 @@
 
 Projet de gestion de sorties parapente.
 
-# Install the projet :
+# Requirements:
+
+- [Composer](https://getcomposer.org/download/) (for windows users, [here is the .exe direct link](https://getcomposer.org/Composer-Setup.exe))
+- a database management system (like `MySQL` or `MariaDB`)
+- optional :
+    - administration tool for the DB (`PhpMyAdmin`)
+    - php server (we will use laravel own `php artisan serve`)
+
+# Install the projet:
 
 - Clone the project
 - Go to the application folder using `cd` command on your cmd or terminal
