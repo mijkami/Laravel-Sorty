@@ -134,3 +134,5 @@ class MyController extends Controller
         return view('pages.usersindex2', compact('users'));
     }
 }
+
+// #TODO renommer controller => ExcelController

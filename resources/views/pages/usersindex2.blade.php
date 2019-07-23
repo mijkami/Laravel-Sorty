@@ -18,6 +18,7 @@ $x=0;echo ' - Info sur la dernière mise à jour <Font color=green>-Fiche mise �
     //       4 : fiche sans correspondance
 
 // coloration statut couleurs array
+
 $color = array ('', '', '<b><Font color=green>', '<b><Font color=blue>', '<b><Font color=red>');
 $x1=0;$x2=0;$x3=0;$x4=0;
       foreach ($users as $user)

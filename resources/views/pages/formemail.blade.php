@@ -21,7 +21,9 @@
 </head>
 <body>
     <?php
-
+        // #TODO :  voir gestion tâches CRON sur Hostinger
+        //          envoyer mail auto si personne n'en a envoyé avant
+        //          + gestion erreur email unique
         // corps du message
             $mailtext='';$virgule=''; $x=1;$title= Date::parse($sor->dat)->format('l j F  ').' / sortie '.$sor->typ;
             $comment=$sor->comment_sor; $n=$sor->id;

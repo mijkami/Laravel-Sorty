@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+{{-- #TODO : vérifier statut et interdire si non à jour --}}
 <h2>Nouvelle participation (mode membre)</h2>
 <a href="{{ URL::previous() }}">Annuler</a>
 {{session('name')." ".session('firstname')}}<br>
@@ -16,6 +16,10 @@ Si vous êtes en liste d'attente, vous recevrez un e-mail si une place s'est lib
 Definir un objet $sors du genre $sors=Sor::where(...,...,...)->orderBy.....
 Afficher les resultats dans le select a l'aide d'une boucle
 --}}
+
+{{-- #TODO : ajuster date d'inscription à J-4 pour l'invité.
+                ex : partcipation If nom invité then/alors date d'inscription = J-4
+            Si moins de J-4, inscription sera à J-4 sinon règles normales --}}
 <?php
 
     $sorFutur = $sors->Where('dat', '>=', today());

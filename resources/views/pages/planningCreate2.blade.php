@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <h3>Nouvelle participation (mode admin)</h3>
+
+{{-- #TODO : merge create & create 2 (très secondaire, non-urgent)
+     #TODO : vérifier statut et interdire si non à jour--}}
 <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
 <ol>
     <li>Pour inscrire un passager bi-place à une sortie, mettre 2x le nom du pilote bi-placeur.</li>

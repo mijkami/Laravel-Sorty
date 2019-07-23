@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+{{-- #TODO : pas de droits d'inscriptions si non connecté (cf fonctionnement association) --}}
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
