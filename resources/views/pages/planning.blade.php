@@ -54,7 +54,7 @@
             echo '</div></div>';
 
         }
-        echo "</font></section>";
+        echo "</section>";
     }
 
 
