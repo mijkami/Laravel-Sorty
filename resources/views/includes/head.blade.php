@@ -1,11 +1,33 @@
-<meta charset="utf-8">
-<meta name="description" content="">
-<meta name="author" content="Scotch">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Super Cool Layouts</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-{{-- <link rel="stylesheet" href="./public/css/sorty.css"> --}}
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-<!-- load bootstrap from a cdn -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    <script src="https://cdn.tiny.cloud/1/yw2alpvctek8wufoxpxk8yffewrm15kpefdwcxbq1phsmq9a/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+        selector: "textarea.editme",
+        selector : "textarea:not(.mceNoEditor)",
+        height: 180,
+        width: 800,
+        menubar: false,
+        plugins: ' link ',
+        toolbar: 'bold italic underline forecolor  fontsizeselect | alignleft aligncenter alignright | link removeformat |',
+        forced_root_block : false,
+        });
+    </script>
+</head>
