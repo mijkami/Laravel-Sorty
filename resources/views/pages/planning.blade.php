@@ -23,7 +23,7 @@
         echo "</p>";
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
         $participSor = $particips->Where('sor_id','=', $sor->id);
-        $participNum=0;
+        $participNum=1;
         if (count($participSor) == null){
                 echo "<span class='row ml-5'>Pas encore d'inscrit !</span>";
         }
