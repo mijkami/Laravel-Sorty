@@ -12,7 +12,7 @@
             <input class="mb-4" type="date" name="dat">
         </div>
         <h5 class="col-3 font-weight-bold">Sorties</h5>
-        <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle flex-wrap mb-4" data-toggle="buttons">
             <label class="btn btn-primary active">
                 <input type="radio" name="typ" id="option" autocomplete="off" value="sortie normale" checked>Sortie normale
             </label>
@@ -31,6 +31,8 @@
             <label class="btn btn-primary">
                 <input type="radio" name="typ" id="option6" autocomplete="off" value="sunset">Sunset
             </label>
+        </div>
+        <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
         </div>
             <h5 class="col-3 font-weight-bold">Commentaire</h5>
             <textarea rows="4" cols="50" name="comment_sor" class="editme" placeholder="Emplacement pour commentaire."></textarea>

@@ -11,7 +11,7 @@
             <input class="mb-4" type="date" name="dat" value="{{ $sor->dat }}">
         </div>
         <h5 class="col-3 font-weight-bold">Sorties</h5>
-        <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle flex-wrap mb-4" data-toggle="buttons">
             <label class="btn btn-primary <?php if ($sor->typ=="sortie normale"){echo 'active';} ?>">
                 <input type="radio" name="typ" id="option" autocomplete="off" value="sortie normale" <?php if ($sor->typ=="sortie normale"){echo 'checked';} ?>> Sortie normale
             </label>
