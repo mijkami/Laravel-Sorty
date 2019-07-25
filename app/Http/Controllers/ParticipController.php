@@ -40,7 +40,8 @@ class ParticipController extends Controller
 
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
-        return view('pages.planning', compact('particips', 'sors'));
+        $sorFutur = DB::select('SELECT sors.* FROM sors WHERE sors.dat>= CURRENT_DATE ORDER BY sors.dat');
+        return view('pages.planning', compact('particips', 'sors', 'sorFutur'));
     }
 
     public function archives()
