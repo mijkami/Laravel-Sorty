@@ -15,8 +15,6 @@
     //affichage des sorties
     // #TODO option creer un role biplaceur qui pourrait
     // s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité)
-
-
     foreach ($sorFutur as $sor) {
         echo "<section class='mt-4'><p class='mb-0'><span class='font-weight-bold'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ.'</span>';
         if (session('role')=='admin' or session('role')=='superadmin'){
@@ -26,19 +24,31 @@
         echo "<p class='col col-lg-7 p-0 mb-2'>".$sor->comment_sor."</p>";
         $participSor = $particips->Where('sor_id','=', $sor->id);
         $participNum=0;
+        if (count($participSor) == null){
+                echo "<span class='row ml-5'>Pas encore d'inscrit !</span>";
+        }
+
 
         foreach ($participSor as $particip) {
             // ajouter IF pour afficher différemment selon admin ou autre utilisateur,
             // tester si le $particip->user_id correspond à la session de id
-            if ($participNum==8){
-                echo "<font color='#00008B'><span class='row ml-5'>Liste d'attente :</span>";
+
+            if ($participNum == 8){
+                echo "<span class='row ml-5'>Liste d'attente :</span>";
             }
+
+            if ($participNum >= 8){
+                echo "<font color='#00008B'>";
+            }
+
+
+
             echo '<div class="row justify-content-end no-gutters ml-2">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id)){
                 echo '<div class="col-2 col-sm-2 col-md-1"><a href="/particips/'.$particip->id.'/destroy"><i class="fas fa-user-times"></i></a> / <a href="/particips/'.$particip->id.'/edit"><i class="fas fa-user-edit"></i></a></div> ';
             }
             //
-            echo '<div class="col-10 col-sm-4 col-md-3 col-lg-2">'.++$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
+            echo '<div class="col-10 col-sm-4 col-md-3 col-lg-2">'.$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
             echo '<div class="col-6 col-sm-4 col-md-3 col-lg-2">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
                 echo $particip->User->tel;
@@ -51,7 +61,12 @@
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
                 echo $particip->comment_particip;
             }
+
             echo '</div></div>';
+            if ($participNum >= 8){
+                echo "</font>";
+            }
+            $participNum+=1;
 
         }
         echo "</section>";
