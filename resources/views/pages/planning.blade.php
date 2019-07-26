@@ -15,6 +15,10 @@
     //affichage des sorties
     // #TODO option creer un role biplaceur qui pourrait
     // s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité)
+    if (count($sorFutur) == null){
+                echo "<h2 class='row ml-5 font-weight-bold mt-5 text-primary'><i class='fas fa-exclamation-triangle'> Pas encore de sortie programmée pour le moment !</i></h2>";
+        }
+
     foreach ($sorFutur as $sor) {
         echo "<section class='mt-4'><p class='mb-0'><span class='font-weight-bold'>".Date::parse($sor->dat)->format('l j F')." , ".$sor->typ.'</span>';
         if (session('role')=='admin' or session('role')=='superadmin'){
