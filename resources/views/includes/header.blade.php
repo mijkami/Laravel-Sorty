@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <h3>
-                    <a class="nav-link " href="http://www.parapangue.re/"><img class="paraLogo" src="../../images/logo_parapangue_HD2.png"></a>
+                    <a class="nav-link " href="http://www.parapangue.re/"><img class="paraLogo" src="../../images/logo_parapangue_HD3.png"></a>
                 </h3>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
