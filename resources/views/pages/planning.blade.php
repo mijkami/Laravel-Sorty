@@ -37,11 +37,11 @@
             // ajouter IF pour afficher différemment selon admin ou autre utilisateur,
             // tester si le $particip->user_id correspond à la session de id
 
-            if ($participNum == 8){
+            if ($participNum == 9){
                 echo "<span class='row ml-5'>Liste d'attente :</span>";
             }
 
-            if ($participNum >= 8){
+            if ($participNum >= 9){
                 echo "<font color='#00008B'>";
             }
 
