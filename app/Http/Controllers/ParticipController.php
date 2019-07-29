@@ -60,6 +60,10 @@ class ParticipController extends Controller
      */
     public function create()
     {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
         return view('pages.planningCreate', compact('particips', 'sors'));
@@ -115,7 +119,7 @@ class ParticipController extends Controller
         if (is_null(Auth::user())) {
             return Redirect::to('/login')->with('error', 'connexion nécessaire');
         }
-        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin') and (session('id') <> $particip->user_id)) {
             return Redirect::to('/')->with('error', 'accès non autorisé');
         }
         return view('pages.planningEdit', compact('particip'));
@@ -223,7 +227,7 @@ class ParticipController extends Controller
         if (is_null(Auth::user())) {
             return Redirect::to('/login')->with('error', 'connexion nécessaire');
         }
-        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin') and (session('id') <> $particip->user_id)) {
             return Redirect::to('/')->with('error', 'accès non autorisé');
         }
         return view('pages.planningDelete', compact('particip'));
