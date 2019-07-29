@@ -286,3 +286,4 @@ class ParticipController extends Controller
 // #TODO : gestion biplace / invité
 // #TODO : faire une tâche CRON pour envoi auto de mail ~2jours avant sortie
 // #TODO : administration chauffeur : WYSIWYG tableau pour s'inscrire pour d'indiquer en temps que chauffeur
+// #TODO : ajouter url slugs
