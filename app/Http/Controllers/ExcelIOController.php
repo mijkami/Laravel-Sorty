@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class MyController extends Controller
+class ExcelIOController extends Controller
 {
     public function importExportView()
     {
@@ -135,4 +135,3 @@ class MyController extends Controller
     }
 }
 
-// #TODO renommer controller => ExcelController
