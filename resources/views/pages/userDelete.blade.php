@@ -6,7 +6,7 @@
     <form  method="POST" action="{{ route('users.destroy', $user->id) }}">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
-        <button type="submit">Supprimer</button>
+        <button class="m-4 p-2 btn btn-danger" type="submit">Supprimer</button>
     </form>
 @endif
 
