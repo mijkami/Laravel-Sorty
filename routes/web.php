@@ -14,7 +14,7 @@ use App\Http\Controllers\ParticipController;
 
 
 Route::get('/', 'ParticipController@index');
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('/particips/create2', 'ParticipController@create2');
 Route::resource('users', 'UserController');
 Route::get('users/{user}/destroy', 'UserController@destroyForm')->name('users.grenade');
