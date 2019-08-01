@@ -1,7 +1,7 @@
 @extends('layouts.app')
 {{-- #TODO : pas de droits d'inscriptions si non connecté (cf fonctionnement association) --}}
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +73,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
