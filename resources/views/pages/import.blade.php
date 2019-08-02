@@ -5,10 +5,10 @@
     <label for="file"><h3>Sélectionnez le fichier à importer (xls, ods, csv) :</h3></label>
     <input type="file" name="file" class="form-control-file ml-4 mt-2" >
     <br>
-    <button class="btn btn-success mx-2">Import</button>
+    <button class="btn btn-danger mx-2">Import</button>
     <?php
 
     ?>
-    <a class="btn btn-warning" href="{{ route('export') }}">Export</a>
+    <a class="btn btn-success" href="{{ route('export') }}">Export</a>
 </form>
 @stop
