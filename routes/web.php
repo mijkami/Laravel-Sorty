@@ -25,11 +25,9 @@ Route::get('particips/{particip}/destroy', 'ParticipController@destroyForm')->na
 Route::get('archives', 'ParticipController@archives')->name('particips.archives');
 Route::get('send', 'ParticipController@send')->name('send');
 Route::get('formemail/{sor}', 'ParticipController@formemail')->name('formemail');
-
 Route::get('export', 'ExcelIOController@export')->name('export');
 Route::get('importExportView', 'ExcelIOController@importExportView')->name('importExportView');
 Route::post('import', 'ExcelIOController@import')->name('import');
-Route::get('usersindex2', 'ExcelIOController@usersindex2');
 
 Route::resource('usertemps', 'UsertempController');
 

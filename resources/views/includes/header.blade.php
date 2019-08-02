@@ -18,7 +18,7 @@
                         </li>
                         @if (session('role')=='admin' OR session('role')=='superadmin')
                         <li class="nav-item">
-                             <a class="nav-link" href="usersindex2">{{ __('Utilisateurs') }}</a>
+                             <a class="nav-link" href="users">{{ __('Utilisateurs') }}</a>
                         </li>
                         @endif
                         @if (session('role')=='superadmin')

@@ -122,4 +122,5 @@ class UserController extends Controller
     {
         return view('pages.userDelete', compact('user'));
     }
+
 }

@@ -118,20 +118,7 @@ class ExcelIOController extends Controller
                 $user->save();
             }
         }
-        return Redirect::to('/usersindex2')->with('success', 'Importation effectuée.');
-    }
-
-    public function usersindex2()
-    {
-        if (is_null(Auth::user())) {
-            return Redirect::to('/login')->with('error', 'connexion nécessaire');
-        }
-        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
-            return Redirect::to('/')->with('error', 'accès non autorisé');
-        }
-
-        $users = User::orderBy('statut')->orderBy('name')->get();
-        return view('pages.usersindex2', compact('users'));
+        return Redirect::to('/users')->with('success', 'Importation effectuée.');
     }
 }
 
