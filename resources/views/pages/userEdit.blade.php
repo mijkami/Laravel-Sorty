@@ -14,7 +14,7 @@
         <input type="radio" name="role" value="membre" <?php if ($user->role=="membre"){echo 'checked';} ?>> Membre<br>
         <input type="radio" name="role" value="admin" <?php if ($user->role=="admin"){echo 'checked';} ?>> Admin<br>
         <input type="radio" name="role" value="superadmin" <?php if ($user->role=="superadmin"){echo 'checked';} ?> class="mceNoEditor"> Super-admin<br>
-        <button type="submit">Modifier</button>
+        <button class="m-3 p-2 btn btn-success" type="submit">Modifier</button>
     </form>
 @endif
 @stop
