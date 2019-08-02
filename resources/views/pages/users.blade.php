@@ -34,8 +34,8 @@
                 @if ($user->statut==2)
 
                     @if($x2==1)
-                    <div class="{{$color[$user->statut]}}">
-                        <h4 class="font-weight-bold {{$color[$user->statut]}} p-1 mt-3">Mise à jour</h4>
+                    <div class="{{$color[$user->statut]}} p-1 mt-4">
+                        <h4 class="font-weight-bold {{$color[$user->statut]}}"><i class="fas fa-arrow-down"></i> Mise à jour <i class="fas fa-arrow-down"></i></h4>
                     </div>
                     @endif
                     <?php $x2++ ?>
@@ -43,8 +43,8 @@
                 @if ($user->statut==3)
 
                     @if($x3==1)
-                    <div class="{{$color[$user->statut]}}">
-                        <h4 class="font-weight-bold {{$color[$user->statut]}} p-1 mt-3">Nouvelle fiche</h4>
+                    <div class="{{$color[$user->statut]}} p-1 mt-4">
+                        <h4 class="font-weight-bold {{$color[$user->statut]}}"><i class="fas fa-arrow-down"></i> Nouvelle fiche <i class="fas fa-arrow-down"></i></h4>
                     </div>
                     @endif
                     <?php $x3++ ?>
@@ -52,13 +52,13 @@
                 @if ($user->statut==4)
 
                     @if($x4==1)
-                    <div class="{{$color[$user->statut]}} p-1 mt-3">
-                        <h4 class="font-weight-bold">FICHES A SUPPRIMER ?</h4>
+                    <div class="{{$color[$user->statut]}} p-1 mt-4">
+                        <h4 class="font-weight-bold"><i class="fas fa-arrow-down"></i> FICHES A SUPPRIMER ? <i class="fas fa-arrow-down"></i></h4>
                     </div>
                     @endif
                     <?php $x4++ ?>
                 @endif
-                <div class="row justify-content-start no-gutters mt-4 mt-md-0">
+                <div class="row justify-content-start no-gutters mt-3 mt-md-0">
                     <div class="col-2 col-md-1">
                             <a href="/users/{{ $user['id'] }}/edit"><i class="fas fa-user-edit"></i></a> / <a href="/users/{{ $user['id'] }}/destroy"><i class="fas fa-user-times"></i>
                             </a>
