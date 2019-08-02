@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @if (session('role')=='superadmin')
-    <h2>Modification d'utilisateur</h2>
-    <a href="{{ URL::previous() }}"><p><i class="fas fa-arrow-left"> Annuler / page précédente</i></p></a>
-    <form  method="POST" action="{{ route('users.update', $user->id) }}">
+    <h3>{{ $user->name }} {{ $user->firstname }} : <span class="h2 font-weight-bold">modification</span> de la fiche personelle</h3>
+    <a href="{{ URL::previous() }}"><h3><i class="fas fa-arrow-left"> Annuler / page précédente</i></h3></a>
+    <form  method="POST" class="mt-4" action="{{ route('users.update', $user->id) }}">
         {{ csrf_field() }}
         {{ method_field('PuT') }}
         <input type="text" name="name" value="{{ $user->name }}"> Nom<br>
