@@ -26,7 +26,7 @@ Route::get('archives', 'ParticipController@archives')->name('particips.archives'
 Route::get('send', 'ParticipController@send')->name('send');
 Route::get('formemail/{sor}', 'ParticipController@formemail')->name('formemail');
 Route::get('export', 'ExcelIOController@export')->name('export');
-Route::get('importExportView', 'ExcelIOController@importExportView')->name('importExportView');
+Route::get('importExport', 'ExcelIOController@importExportView')->name('importExportView');
 Route::post('import', 'ExcelIOController@import')->name('import');
 
 Route::resource('usertemps', 'UsertempController');
