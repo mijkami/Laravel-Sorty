@@ -5,10 +5,10 @@
     <div id="app">
         @include('includes.header')
 
-        <main class="py-5 mb-5">
+        <main>
             <section>
                 @include('flash-message')
-                <div class="container">
+                <div class="container py-5 mb-5">
                     <div class="panel panel-default">
                         <div class="panel-heading"></div>
                             <div class="panel-body pb-5 mb-5">
