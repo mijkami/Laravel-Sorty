@@ -39,7 +39,7 @@ class ExcelIOController extends Controller
     public function import()
     {
         if (is_null(request()->file('file'))) {
-            return Redirect::to('/importExport')->with('error', 'le fichier est manquant');
+            return Redirect::to('/importExportView')->with('error', 'le fichier est manquant');
         }
         //importation fichier extérieur
         DB::table('usertemps')->delete();
@@ -53,7 +53,7 @@ class ExcelIOController extends Controller
             $mail = $usertemp->email;
             $countemail = $aa = Usertemp::where('email', $mail)->count();
             if ($countemail > 1) {
-                return Redirect::to('/importExport')->with('error', 'le mail ' . $mail . ' est présent plusieurs fois');
+                return Redirect::to('/importExportView')->with('error', 'le mail ' . $mail . ' est présent plusieurs fois');
             }
         }
 
