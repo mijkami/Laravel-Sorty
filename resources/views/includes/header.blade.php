@@ -23,7 +23,7 @@
                         @endif
                         @if (session('role')=='superadmin')
                         <li class="nav-item">
-                             <a class="nav-link" href="/importExportView">{{ __('Import/Export') }}</a>
+                             <a class="nav-link" href="/importExport">{{ __('Import/Export') }}</a>
                         </li>
                         @endif
                     </ul>
