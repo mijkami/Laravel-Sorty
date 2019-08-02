@@ -126,7 +126,7 @@ class ExcelIOController extends Controller
         if (is_null(Auth::user())) {
             return Redirect::to('/login')->with('error', 'connexion nécessaire');
         }
-        if (session('role') <> 'superadmin') {
+        if (session('role') <> 'admin' and (session('role') <> 'superadmin')) {
             return Redirect::to('/')->with('error', 'accès non autorisé');
         }
 

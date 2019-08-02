@@ -18,15 +18,12 @@
                         </li>
                         @if (session('role')=='admin' OR session('role')=='superadmin')
                         <li class="nav-item">
-                             <a class="nav-link" href="{{ route('users.index') }}">{{ __('Utilisateurs') }}</a>
+                             <a class="nav-link" href="usersindex2">{{ __('Utilisateurs') }}</a>
                         </li>
                         @endif
                         @if (session('role')=='superadmin')
                         <li class="nav-item">
                              <a class="nav-link" href="/importExportView">{{ __('Import/Export') }}</a>
-                        </li>
-                        <li class="nav-item">
-                             <a class="nav-link" href="/usersindex2">{{ __('Synthèse import') }}</a>
                         </li>
                         @endif
                     </ul>
