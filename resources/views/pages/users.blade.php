@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h2>Liste d'utilisateurs</h2>
+<h2 class="p-1 mb-3">Liste d'utilisateurs</h2>
 {{-- #TODO étudier /discuter possibilité de pouvoir créer nouvel invité --}}
 @foreach ($users as $user)
     <div class="row justify-content-start no-gutters mt-3 mt-md-0">
