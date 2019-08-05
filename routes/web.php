@@ -28,6 +28,6 @@ Route::get('formemail/{sor}', 'ParticipController@formemail')->name('formemail')
 Route::get('export', 'ExcelIOController@export')->name('export');
 Route::get('importExport', 'ExcelIOController@importExportView')->name('importExportView');
 Route::post('import', 'ExcelIOController@import')->name('import');
-
+Route::get('modif', 'UserController@massEdit')->name('modif');
 Route::resource('usertemps', 'UsertempController');
 

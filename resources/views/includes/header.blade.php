@@ -25,6 +25,9 @@
                         <li class="nav-item">
                              <a class="nav-link" href="/importExport">{{ __('Import/Export') }}</a>
                         </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/modif">{{ __('Modif.') }}</a>
+                        </li>
                         @endif
                     </ul>
 

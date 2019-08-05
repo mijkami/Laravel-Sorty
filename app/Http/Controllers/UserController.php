@@ -32,11 +32,23 @@ class UserController extends Controller
             return Redirect::to('/')->with('error', 'accès non autorisé');
         }
         $users = User::orderBy('name', 'ASC')->get();
+        return view('pages.users', compact('users'));
+    }
+
+    public function massEdit()
+    {
+        if (is_null(Auth::user())) {
+            return Redirect::to('/login')->with('error', 'connexion nécessaire');
+        }
+        if ((session('role') <> 'superadmin')) {
+            return Redirect::to('/')->with('error', 'accès non autorisé');
+        }
+        $users = User::orderBy('name', 'ASC')->get();
         $color = array('', '', 'text-success', 'text-primary', 'text-danger');
         $countUpdate = 0;
         $countNew = 0;
         $countDeleted = 0;
-        return view('pages.users', compact('users', 'usersUpdateCard', 'color', 'countUpdate', 'countNew', 'countDeleted'));
+        return view('pages.massEdit', compact('users', 'usersUpdateCard', 'color', 'countUpdate', 'countNew', 'countDeleted'));
     }
 
     /**
