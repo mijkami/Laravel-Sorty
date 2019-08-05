@@ -33,8 +33,9 @@ class UserController extends Controller
         }
         // définition variable $users
         $users = User::orderBy('name', 'ASC')->get();
+        $color = array('', '', 'text-success', 'text-primary', 'text-danger');
         // aller à la vue 'index.blade.php' en passant la variable $users définie préalablement
-        return view('pages.users', compact('users'));
+        return view('pages.users', compact('users', 'usersUpdateCard', 'color'));
     }
 
     /**
