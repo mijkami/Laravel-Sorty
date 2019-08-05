@@ -4,12 +4,7 @@
     <h2>Liste d'utilisateurs</h2>
     {{-- #TODO étudier /discuter possibilité de pouvoir créer nouvel invité --}}
     @foreach ($users as $user)
-        <div class="row justify-content-start no-gutters mt-4 mt-md-0">
-            <div class="col-5 col-md-2">{{ $user['name'] }}</div>
-            <div class="col-4 col-md-2">{{ $user['firstname'] }}</div>
-            <div class="col-4 col-md-3 ">{{ $user['tel'] }}</div>
-            <div class="col-5 col-md-4">{{ $user['email'] }}</div>
-        </div>
+        @include('includes.showUser')
     @endforeach
 @endif
 @if (session('role')=='superadmin')
