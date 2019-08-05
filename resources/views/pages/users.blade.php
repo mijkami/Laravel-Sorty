@@ -19,7 +19,6 @@
         <h5 class="font-weight-bold p-2 mb-3">Info sur la dernière mise à jour : <span class="text-success">Fiche mise à jour</span>, <span class="text-primary">Fiche nouvelle</span>, <span class="text-danger">Fiche orpheline</span>.</h5>
     </div>
 
-
     @foreach ($users as $user)
         @if($user['statut'] == 1)
             @include('includes.showUser')
@@ -28,103 +27,36 @@
 
     @foreach ($users as $user)
         @if($user['statut'] == 2)
-            {{-- @if($user['statut']->count() == 1)
+            @if($countUpdate++ == 0)
                 <div class="p-1 mt-4">
                     <h4 class="font-weight-bold text-success"><i class="fas fa-arrow-down"></i> Mise à jour <i class="fas fa-arrow-down"></i></h4>
                 </div>
-            @endif --}}
+            @endif
             @include('includes.showUser')
         @endif
     @endforeach
 
     @foreach ($users as $user)
         @if($user['statut'] == 3)
+            @if($countNew++ == 0)
+                <div class="text-success p-1 mt-4">
+                    <h4 class="font-weight-bold text-primary"><i class="fas fa-arrow-down"></i> Nouvelle fiche <i class="fas fa-arrow-down"></i></h4>
+                </div>
+            @endif
             @include('includes.showUser')
         @endif
     @endforeach
 
     @foreach ($users as $user)
         @if($user['statut'] == 4)
+            @if($countDeleted++ == 0)
+                <div class="text-success p-1 mt-4">
+                    <h4 class="font-weight-bold text-danger"><i class="fas fa-arrow-down"></i> FICHE(S) A SUPPRIMER ? <i class="fas fa-arrow-down"></i></h4>
+                </div>
+            @endif
             @include('includes.showUser')
         @endif
     @endforeach
 
-
-{{--
-    @foreach ($usersUpdatedCard as $user)
-
-        @include('includes.showUser')
-    @endforeach
-
-    @if(count($usersNewCard)==1)
-                <div class="text-success p-1 mt-4">
-                    <h4 class="font-weight-bold text-success"><i class="fas fa-arrow-down"></i> Nouvelle fiche <i class="fas fa-arrow-down"></i></h4>
-                </div>
-
-    @endif --}}
-    {{-- @foreach ($usersNewCard as $user)
-        @include('includes.showUser')
-    @endforeach
-
-    @if(count($usersDeletedCard)==1)
-            <div class="text-success p-1 mt-4">
-                    <h4 class="font-weight-bold"><i class="fas fa-arrow-down"></i> FICHE(S) A SUPPRIMER ? <i class="fas fa-arrow-down"></i></h4>
-            </div>
-    @endif
-    @foreach ($usersDeletedCard as $user)
-        @include('includes.showUser')
-    @endforeach --}}
-
-
-    {{-- {{-- @foreach ($users as $user) --}}
-
-        {{-- @if ($user->statut==1 OR $user->statut==1)
-
-            @foreach ($users01 as $test)
-                @include('includes.showUser')
-            @endforeach
-        @endif
-
-        @if ($user->statut==2)
-
-
-
-            @foreach ($users2 as $id)
-                <div class="row justify-content-start no-gutters mt-3 mt-md-0 {{$color[$user->statut]}}">
-                    <div class="col-2 col-md-1">
-                            <a href="/users/{{ $user['id'] }}/edit"><i class="fas fa-user-edit"></i></a> / <a href="/users/{{ $user['id'] }}/destroy"><i class="fas fa-user-times"></i>
-                            </a>
-                    </div>
-                    <div class="col-5 col-md-2">{{ $user['name'] }}</div>
-                    <div class="col-4 col-md-2">{{ $user['firstname'] }}</div>
-                    <div class="col-4 col-md-3 ">{{ $user['tel'] }}</div>
-                    <div class="col-5 col-md-3">{{ $user['email'] }}</div>
-                </div>
-            @endforeach
-        @endif
-
-        @if ($user->statut==3)
-
-
-
-             @foreach ($users3 as $test)
-                @include('includes.showUser')
-            @endforeach
-        @endif
-
-        @if ($user->statut==4)
-
-            @if($x4==0)
-            <div class="text-success p-1 mt-4">
-                <h4 class="font-weight-bold"><i class="fas fa-arrow-down"></i> FICHE(S) A SUPPRIMER ? <i class="fas fa-arrow-down"></i></h4>
-            </div>
-            @endif
-
-             @foreach ($users4 as $test)
-                @include('includes.showUser')
-            @endforeach
-        @endif
-
-    @endforeach --}}
 @endif
 @endsection
