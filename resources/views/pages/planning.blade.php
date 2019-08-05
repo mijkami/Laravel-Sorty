@@ -47,23 +47,23 @@
 
 
 
-            echo '<div class="row justify-content-end no-gutters ml-2">';
+            echo '<div class="row justify-content-end no-gutters">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id)){
-                echo '<div class="col-2 col-sm-2 col-md-1"><a href="/particips/'.$particip->id.'/destroy"><i class="fas fa-user-times"></i></a> / <a href="/particips/'.$particip->id.'/edit"><i class="fas fa-user-edit"></i></a></div> ';
+                echo '<div class="col-3 col-md-2 col-lg-1 h4"><a href="/particips/'.$particip->id.'/edit" aria-label="Editer"><i class="fas fa-user-edit" title="Modifier '.$particip->User->name.' '.$particip->User->firstname.'"></i></a> / <a href="/particips/'.$particip->id.'/destroy" aria-label="supprimer"><i class="fas fa-user-times" title="Enlever '.$particip->User->name.' '.$particip->User->firstname.'"></i></a></div> ';
             }
             //
-            echo '<div class="col-10 col-sm-4 col-md-3 col-lg-2">'.$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
-            echo '<div class="col-6 col-sm-4 col-md-3 col-lg-2">';
+            echo '<div class="col-9 col-sm-4 col-md-4 col-lg-2">'.$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
+            echo '<div class="col-6 offset-2 col-sm-5 offset-sm-0 col-md-6 offset-md-0 col-lg-3 offset-lg-0 h5">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
                 echo $particip->User->tel;
            }
-            echo '</div><div class="col-4 col-sm-2 col-md-1">';
+            echo '</div><div class="col-4 col-sm-2 offset-sm-2 col-md-4 offset-md-2 col-lg-2 offset-lg-0">';
             if (session('role')=='admin' or session('role')=='superadmin'){
                 echo Date::parse($particip->inscription)->format('j F');
             }
-            echo '</div><div class="col-10 col-sm-10 col-md-3 col-lg-6">';
+            echo '</div><div class="col-10 offset-2 col-sm-7 offset-sm-0 col-md-6 col-lg-4 offset-md-0 mb-3">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
-                echo $particip->comment_particip;
+                echo '"'.$particip->comment_particip.'"';
             }
 
             echo '</div></div>';
