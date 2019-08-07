@@ -48,7 +48,7 @@ class UserController extends Controller
         $countUpdate = 0;
         $countNew = 0;
         $countDeleted = 0;
-        return view('pages.massEdit', compact('users', 'usersUpdateCard', 'color', 'countUpdate', 'countNew', 'countDeleted'));
+        return view('pages.massEdit', compact('users', 'color', 'countUpdate', 'countNew', 'countDeleted'));
     }
 
     /**
