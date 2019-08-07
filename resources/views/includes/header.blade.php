@@ -36,7 +36,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Connection') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Pour vous connecter, ou obtenir un mot de passe') }}</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
