@@ -53,7 +53,7 @@
             }
             //
             echo '<div class="col-9 col-sm-4 col-md-4 col-lg-2">'.$participNum.'. '.$particip->User->firstname.' '.$particip->User->name.'</div>';
-            echo '<div class="col-6 offset-2 col-sm-5 offset-sm-0 col-md-6 offset-md-0 col-lg-3 offset-lg-0 h5">';
+            echo '<div class="col-6 offset-2 col-sm-5 offset-sm-0 col-md-6 offset-md-0 col-lg-3 offset-lg-0">';
             if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre')){
                 echo $particip->User->tel;
            }
