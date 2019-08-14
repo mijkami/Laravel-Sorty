@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h2>Sorties prochaines & Participants & Participantes</h2>
+<h2>Sorties prochaines & Participants</h2>
 <?php
     session(['page' => "/particips"]);
     if (session('role')=='admin' or session('role')=='superadmin'){
