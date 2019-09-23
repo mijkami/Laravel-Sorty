@@ -10,12 +10,9 @@
     @elseif (session('role')=='membre'){
         <a href="/particips/create"><p><i class="fas fa-plus"> Création de participation</i></p></a>
     @endif
-
-
-    {{--
-    //affichage des sorties
-    // #TODO option creer un role biplaceur qui pourrait
-    // s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité) --}}
+    {{-- affichage des sorties
+    #TODO option creer un role biplaceur qui pourrait
+    s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité) --}}
     @if (count($sorFutur) == null)
                 <h2 class='row ml-5 font-weight-bold mt-5 text-primary'><i class='fas fa-exclamation-triangle'> Pas encore de sortie programmée pour le moment !</i></h2>
     @endif
@@ -40,17 +37,12 @@
             {{--
             // ajouter IF pour afficher différemment selon admin ou autre utilisateur,
             // tester si le $particip->user_id correspond à la session de id --}}
-
             @if ($participNum == 9)
                 <span class='row ml-5'>Liste d'attente :</span>
             @endif
-
             @if ($participNum >= 9)
                 <font color='#00008B'>
             @endif
-
-
-
             <div class="row justify-content-end no-gutters">
                 @if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id))
                     <div class="col-3 col-md-2 col-lg-1 h4"><a href="/particips/{{ $particip->id }}/edit" aria-label="Editer">
