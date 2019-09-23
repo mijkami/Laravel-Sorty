@@ -11,6 +11,9 @@
 
 Projet de gestion de sorties parapente.
 
+- Live (partial) : [Parapangue](http://sorties.16mb.com/)
+- Live prod : [Hostinger](http://sorty.890m.com/) or [Heroku](http://laravelsorty.herokuapp.com/)
+
 # Requirements:
 
 - [Composer](https://getcomposer.org/download/) (for windows users, [here is the .exe direct link](https://getcomposer.org/Composer-Setup.exe))
