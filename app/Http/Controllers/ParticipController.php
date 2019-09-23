@@ -81,7 +81,7 @@ class ParticipController extends Controller
         $users = User::orderBy('name', 'ASC')->get();
         $particips = Particip::orderBy('inscription', 'ASC')->get();
         $sors = Sor::orderBy('dat', 'ASC')->get();
-        $sorFutur = $sors->Where('dat', '>=', today());
+        $sorFutur = DB::select('SELECT sors.* FROM sors WHERE sors.dat>= CURRENT_DATE ORDER BY sors.dat');
         return view('pages.planningCreate2', compact('users', 'particips', 'sorFutur'));
     }
 
