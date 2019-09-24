@@ -5,8 +5,12 @@
     {{ session(['page' => "/particips"]) }}
 
     @if (session('role')=='admin' OR session('role')=='superadmin')
-        <a href="/sors/create"><p><i class="fas fa-shuttle-van"> Créer une sortie</i></p></a>
-        <a href="/particips/create2"><p><i class="fa fa-plus"></i> Création de participation (mode administrateur)</p></a>
+        <a href="/sors/create">
+            <p><i class="fas fa-shuttle-van"> Créer une sortie</i></p>
+        </a>
+        <a href="/particips/create2">
+            <p><i class="fa fa-plus"></i> Création de participation (mode administrateur)</p>
+        </a>
     @elseif (session('role')=='membre'){
         <a href="/particips/create"><p><i class="fas fa-plus"> Création de participation</i></p></a>
     @endif
@@ -14,7 +18,9 @@
     #TODO option creer un role biplaceur qui pourrait
     s'inscrire  2 fois, sans autre prérogative (membre + cette possibilité) --}}
     @if (count($sorFutur) == null)
-                <h2 class='row ml-5 font-weight-bold mt-5 text-primary'><i class='fas fa-exclamation-triangle'> Pas encore de sortie programmée pour le moment !</i></h2>
+                <h2 class='row ml-5 font-weight-bold mt-5 text-primary'>
+                    <i class='fas fa-exclamation-triangle'> Pas encore de sortie programmée pour le moment !</i>
+                </h2>
     @endif
 
     @foreach ($sorFutur as $sor)
@@ -22,7 +28,9 @@
             <p class='mb-0'>
                 <span class='font-weight-bold'>{{ Date::parse($sor->dat)->format('l j F') }}, {{ $sor->typ }}</span>
                 @if (session('role')=='admin' or session('role')=='superadmin')
-                    | <a href="formemail/{{ $sor->id }}"><i class="far fa-envelope"> Envoi mail</i></a> / <a href="/sors/{{ $sor->id }}/edit"><i class="far fa-edit"> Éditer</i></a> / <a href="/sors/'.$sor->id.'/destroy"><i class="fa fa-times"></i> Effacer</a>
+                    | <a href="formemail/{{ $sor->id }}"><i class="far fa-envelope"> Envoi mail</i></a> /
+                    <a href="/sors/{{ $sor->id }}/edit"><i class="far fa-edit"> Éditer</i></a> /
+                    <a href="/sors/'.$sor->id.'/destroy"><i class="fa fa-times"></i> Effacer</a>
                 @endif
             </p>
         <p class='col col-lg-7 p-0 mb-2'>{{ $sor->comment_sor }}</p>
@@ -45,9 +53,13 @@
             @endif
             <div class="row justify-content-end no-gutters">
                 @if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id))
-                    <div class="col-3 col-md-2 col-lg-1 h4"><a href="/particips/{{ $particip->id }}/edit" aria-label="Editer">
-                        <i class="fas fa-user-edit" title="Modifier {{ $particip->User->name }} {{ $particip->User->firstname }}"></i></a> /
-                        <a href="/particips/{{ $particip->id }}/destroy" aria-label="supprimer"><i class="fas fa-user-times" title="Enlever {{ $particip->User->name }} {{ $particip->User->firstname }}"></i></a>
+                    <div class="col-3 col-md-2 col-lg-1 h4">
+                        <a href="/particips/{{ $particip->id }}/edit" aria-label="Editer">
+                            <i class="fas fa-user-edit" title="Modifier {{ $particip->User->name }} {{ $particip->User->firstname }}"></i>
+                        </a> /
+                        <a href="/particips/{{ $particip->id }}/destroy" aria-label="supprimer">
+                            <i class="fas fa-user-times" title="Enlever {{ $particip->User->name }} {{ $particip->User->firstname }}"></i>
+                        </a>
                     </div>
                 @endif
                 <div class="col-9 col-sm-4 col-md-4 col-lg-2">{{ $participNum }}. {{ $particip->User->firstname }} {{ $particip->User->name }}</div>
