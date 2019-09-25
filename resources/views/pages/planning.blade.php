@@ -11,7 +11,7 @@
         <a href="/particips/create2">
             <p><i class="fa fa-plus"></i> Création de participation (mode administrateur)</p>
         </a>
-    @elseif (session('role')=='membre'){
+    @elseif (session('role')=='membre')
         <a href="/particips/create"><p><i class="fas fa-plus"> Création de participation</i></p></a>
     @endif
     {{-- affichage des sorties
@@ -53,7 +53,7 @@
             @endif
             <div class="row justify-content-end no-gutters">
                 @if (session('role')=='admin' or session('role')=='superadmin' or (session('role')=='membre' and session('id')==$particip->user_id))
-                    <div class="col-3 col-md-2 col-lg-1 h4">
+                    <div class="col-3 col-md-2 col-lg-1 h5">
                         <a href="/particips/{{ $particip->id }}/edit" aria-label="Editer">
                             <i class="fas fa-user-edit" title="Modifier {{ $particip->User->name }} {{ $particip->User->firstname }}"></i>
                         </a> /
